@@ -16,4 +16,4 @@ foreach ($tageler as $t)
 	echo "<a href='index.php?option=com_tageler&view=tageler&einheit=".$t->einheit."'>".ucwords($t->einheit)."</a><br />";
 }
 
-echo "<a href='index.php?option=com_tageler&view=tagelerubersicht'>Alle Tageler</a><br />";
+echo "<br /><a href='index.php?option=com_tageler&view=tagelerubersicht'>Alle Tageler</a><br />";
