@@ -38,8 +38,21 @@ class TagelerModelTageler extends JModel
         return $tageler;
     }
 
-// 	function store($data)
-// 	{
+	function store($data)
+	{
+		$d = explode('.', $data['datum']);
+		$datum = sprintf("%04d-%02d-%02d", $d[2], $d[1], $d[0]);
+		$db =& JFactory::getDBO();
+
+		$query = "UPDATE #__tageler SET datum='".$datum."', titel='".$data['titel']."', beginn='".$data['beginn']."',
+										schluss='".$data['schluss']."', mitbringen='".$data['mitbringen']."', tenue='".$data['tenue']."'
+				  WHERE einheit='".$data['einheit']."'";
+		echo $query;
+		$db->setQuery( $query );
+		$db->query();
+		
+		return $db->getErrorMsg();
+
 // 		// get the table
 // 		$row =& $this->getTable();
 //  
@@ -61,6 +74,6 @@ class TagelerModelTageler extends JModel
 // 			return false;
 // 		}
 //  
-// 		return true;         
-// 	}
+// 		return true;
+	}
 }

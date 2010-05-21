@@ -45,12 +45,12 @@ class TagelerController extends JController
 	{
 		// Check for request forgeries
 		JRequest::checkToken() or jexit( 'Invalid Token' );
- 
+
 // 		// get the model
-// 		$model =& $this->getModel();
+		$model =& $this->getModel();
 //  
 // 		//get data from request
-// 		$post = JRequest::get('post');
+		$post = JRequest::get('post');
 // 		$post['content'] = JRequest::getVar('content', '', 'post', 'string', JREQUEST_ALLOWRAW);
 //  
 // 		// let the model save it
@@ -60,7 +60,12 @@ class TagelerController extends JController
 // 			$message = JText::_('Error while saving');
 // 			$message .= ' ['.$model->getError().'] ';
 // 		}
-		$this->setRedirect('index.php?option=com_tageler', $message);
+
+		$message = $model->store($post);
+
+		$einheit = JRequest::getWord('einheit');
+		$view = JRequest::getWord('view');
+		$this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit, $message);
 	}
 
 	/**
