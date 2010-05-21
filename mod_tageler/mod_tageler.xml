@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+    <name>Tageler</name>
+    <author>Robin Baumgartner</author>
+    <version>1.5.0</version>
+    <description>Modul zur Darstellung der Taglerübersicht</description>
+    <files>
+        <filename module="mod_tageler">mod_tageler.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+    </files>
+<!--    <languages>
+        <language tag="de-CH">en-GB.tageler.ini</language>
+    </languages>-->
+    <params>
+        <!-- parameter to allow placement of a module class suffix for the module table / xhtml display -->
+        <param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+        <!-- just gives us a little room between the previous parameter and the next -->
+<!--         <param name="@spacer" type="spacer" default="" label="" description="" /> -->
+        <!-- A parameter that allows an administrator to modify the number of users that this module will display -->
+<!--         <param name="usercount" type="text" default="5" label="LABEL USER COUNT" description="DESC USER COUNT" /> -->
+    </params>
+</install>
