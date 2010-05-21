@@ -24,9 +24,11 @@ class TagelerViewTageler extends JView
 		$einheit = JRequest::getWord('einheit');
         $model = $this->getModel();
         $tageler = $model->getTageler($einheit);
+        $felder = $model->getFelder($einheit);
 
         $einheit = ucwords($einheit);
         $this->assignRef( 'tageler', $tageler );
+        $this->assignRef( 'felder', $felder );
         $this->assignRef( 'einheit', $einheit );
 
 		parent::display($tpl);

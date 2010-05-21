@@ -31,12 +31,23 @@ class TagelerModelTageler extends JModel
     {
         $db =& JFactory::getDBO();
 
-        $query = 'SELECT * FROM #__tageler WHERE einheit = "'.$gruppe.'"';
+        $query = "SELECT * FROM #__tageler WHERE einheit = '".$gruppe."'";
         $db->setQuery( $query );
         $tageler = $db->loadObject();
 
         return $tageler;
     }
+
+	function getFelder($gruppe)
+	{
+		$db =& JFactory::getDBO();
+
+		$query = "SELECT * FROM #__tagelerfelder WHERE einheit = '".$gruppe."'";
+		$db->setQuery( $query );
+		$felder = $db->LoadObjectList();
+
+		return $felder;
+	}
 
 	function store($data)
 	{
@@ -47,33 +58,32 @@ class TagelerModelTageler extends JModel
 		$query = "UPDATE #__tageler SET datum='".$datum."', titel='".$data['titel']."', beginn='".$data['beginn']."',
 										schluss='".$data['schluss']."', mitbringen='".$data['mitbringen']."', tenue='".$data['tenue']."'
 				  WHERE einheit='".$data['einheit']."'";
-		echo $query;
+        
 		$db->setQuery( $query );
 		$db->query();
 		
 		return $db->getErrorMsg();
-
-// 		// get the table
-// 		$row =& $this->getTable();
-//  
-// 		// Bind the form fields to the hello table
-// 		if (!$row->bind($data)) {
-// 			$this->setError($this->_db->getErrorMsg());
-// 			return false;
-// 		}
-//  
-// 		// Make sure the hello record is valid
-// 		if (!$row->check()) {
-// 			$this->setError($this->_db->getErrorMsg());
-// 			return false;
-// 		}
-//  
-// 		// Store the web link table to the database
-// 		if (!$row->store()) {
-// 			$this->setError( $row->getErrorMsg() );
-// 			return false;
-// 		}
-//  
-// 		return true;
 	}
+
+    function addField($gruppe)
+    {
+        $db =& JFactory::getDBO();
+
+        $query = "INSERT INTO #__tagelerfelder (einheit, titel, inhalt) VALUES ('".$gruppe."', '<Titel>', '<Inhalt>')";
+        $db->setQuery( $query );
+        $db->query();
+
+        return $db->getErrorMsg();
+    }
+
+    function remField($fid)
+    {
+        $db =& JFactory::getDBO();
+
+        $query = "DELETE FROM #__tagelerfelder WHERE id = ".$fid;
+        $db->setQuery( $query );
+        $db->query();
+
+        return $db->getErrorMsg();
+    }
 }

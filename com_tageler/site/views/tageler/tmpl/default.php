@@ -29,6 +29,12 @@ if ($this->tageler->datum >= date("Y-m-d"))
 		<tr>
 			<td style='vertical-align:top'>Tenü:</td><td><?php echo nl2br($this->tageler->tenue); ?></td>
 		</tr>
+<?php
+    foreach($this->felder as $feld)
+    {
+        echo "<tr><td>".$feld->titel."</td><td>".nl2br($feld->inhalt)."</td></tr>";
+    }
+?>
 	</table>
 
 <?php

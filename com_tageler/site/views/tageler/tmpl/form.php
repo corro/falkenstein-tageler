@@ -17,12 +17,18 @@ function submitbutton(pressbutton)
 	//TODO: Überprüfen der Eingaben
 	submitform(pressbutton);
 }
+
+function removefield(id)
+{
+    document.getElementById('fieldId').value = id;
+    submitform('remField');
+}
 //-->
 </script>
 
 <style type="text/css">
 .input {
-	width: 350px;
+	width: 300px;
 }
 textarea.input {
 	height: 100px;
@@ -50,6 +56,24 @@ textarea.input {
 		<tr>
 			<td style='vertical-align:top;'>Tenü:</td><td><textarea class='input' name='tenue' id='tenue'><?php echo $this->tageler->tenue; ?></textarea></td>
 		</tr>
+<?php
+    foreach($this->felder as $feld)
+    {
+?>
+        <tr>
+            <td style='vertical-align:top'>
+                <input class='input' style='width:150px' type='text' value='<?php echo $feld->titel; ?>' />:
+            </td>
+            <td>
+                <textarea class='input'><?php echo $feld->inhalt; ?></textarea>
+            </td>
+            <td style='vertical-align:top'>
+                <button onclick="removefield(<?php echo $feld->id; ?>)">-</button>
+            </td>
+        </tr>
+<?php
+    }
+?>
 	</table>
 
 	<input type="hidden" name="option" value="com_tageler" />
@@ -57,8 +81,10 @@ textarea.input {
 	<input type="hidden" name="controller" value="" />
 	<input type="hidden" name="einheit" value="<?php echo $this->tageler->einheit; ?>" />
 	<input type="hidden" name="view" value="tageler" />
+    <input type="hidden" name="fieldId" id='fieldId' value="" />
 	<?php echo JHTML::_( 'form.token' ); ?>
 
-	<button type="button" onclick="submitbutton('save')">Speichern</button>
-	<button type="button" onclick="submitbutton('cancel')">Abbrechen</button>
+	<button onclick="submitbutton('save')">Speichern</button>
+	<button onclick="submitbutton('cancel')">Abbrechen</button>
+    <button onclick="submitbutton('addField')">Feld hinzufügen</button>
 </form>

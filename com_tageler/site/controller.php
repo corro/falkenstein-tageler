@@ -51,15 +51,6 @@ class TagelerController extends JController
 //  
 // 		//get data from request
 		$post = JRequest::get('post');
-// 		$post['content'] = JRequest::getVar('content', '', 'post', 'string', JREQUEST_ALLOWRAW);
-//  
-// 		// let the model save it
-// 		if ($model->store($post)) {
-// 			$message = JText::_('Success');
-// 		} else {
-// 			$message = JText::_('Error while saving');
-// 			$message .= ' ['.$model->getError().'] ';
-// 		}
 
 		$message = $model->store($post);
 
@@ -67,6 +58,29 @@ class TagelerController extends JController
 		$view = JRequest::getWord('view');
 		$this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit, $message);
 	}
+
+    function addField()
+    {
+        $model =& $this->getModel();
+
+        $einheit = JRequest::getWord('einheit');
+        $model->addField($einheit);
+
+        $view = JRequest::getWord('view');
+        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit.'&task=edit');
+    }
+
+    function remField()
+    {
+        $model =& $this->getModel();
+
+        $fid = JRequest::getInt('fieldId');
+        $model->remField($fid);
+
+        $view = JRequest::getWord('view');
+        $einheit = JRequest::getWord('einheit');
+        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit.'&task=edit');
+    }
 
 	/**
 	* Cancel, redirect to component
