@@ -8,7 +8,7 @@ CREATE TABLE `#__tageler` (
   `beginn` varchar(50) NULL,
   `schluss` varchar(50) NULL,
   `mitbringen` text NULL,
-  `tenue` varchar(50) NULL,
+  `tenue` text NULL,
   PRIMARY KEY  (`einheit`)
 );
 

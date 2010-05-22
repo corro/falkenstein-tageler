@@ -8,13 +8,21 @@ function date_mysql2german($date)
     return    sprintf("%02d.%02d.%04d", $d[2], $d[1], $d[0]);
 }
 
+function ball2img($str)
+{
+    return str_replace("*", "<img src='components/com_tageler/img/falkipfeilgruen.gif' />", $str);
+}
+
 if ($this->tageler->datum >= date("Y-m-d"))
 {
 ?>
     <style type='text/css'>
         td {
             padding-bottom:10px;
-/*             padding-right:20px; */
+            vertical-align:top;
+        }
+        td.label {
+            width:120px;
         }
     </style>
 
@@ -22,24 +30,24 @@ if ($this->tageler->datum >= date("Y-m-d"))
     <h2><?php echo $this->tageler->titel; ?></h2>
 	<table>
 		<tr>
-			<td>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
+			<td class='label'>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
 		</tr>
 		<tr>
-			<td>Schluss:</td><td><?php echo $this->tageler->schluss; ?></td>
+			<td class='label'>Schluss:</td><td><?php echo $this->tageler->schluss; ?></td>
 		</tr>
 		<tr>
-			<td style='vertical-align:top'>Mitbringen:</td><td><?php echo nl2br($this->tageler->mitbringen); ?></td>
+			<td class='label'>Mitbringen:</td><td><?php echo ball2img(nl2br($this->tageler->mitbringen)); ?></td>
 		</tr>
 		<tr>
-			<td style='vertical-align:top'>Tenü:</td><td><?php echo nl2br($this->tageler->tenue); ?></td>
+			<td class='label'>Tenü:</td><td><?php echo ball2img(nl2br($this->tageler->tenue)); ?></td>
 		</tr>
 <?php
     foreach($this->felder as $feld)
     {
         if ($feld->titel)
-            echo "<tr><td style='vertical-align:top'>".$feld->titel.":</td><td>".nl2br($feld->inhalt)."</td></tr>";
+            echo "<tr><td style='vertical-align:top'>".$feld->titel.":</td><td>".ball2img(nl2br($feld->inhalt))."</td></tr>";
         else
-            echo "<tr><td></td><td>".nl2br($feld->inhalt)."</td></tr>";
+            echo "<tr><td></td><td>".ball2img(nl2br($feld->inhalt))."</td></tr>";
     }
 ?>
 	</table>

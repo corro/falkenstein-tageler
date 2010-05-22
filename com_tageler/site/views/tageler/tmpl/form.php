@@ -14,8 +14,7 @@ function date_mysql2german($date)
 <!--
 function submitbutton(pressbutton)
 {
-	//TODO: Überprüfen der Eingaben
-	submitform(pressbutton);
+    submitform(pressbutton);
 }
 
 function removefield(id)
@@ -23,6 +22,7 @@ function removefield(id)
     document.getElementById('fieldId').value = id;
     submitform('remField');
 }
+
 //-->
 </script>
 
@@ -39,7 +39,11 @@ textarea.input {
 	<h1>Tageler editieren für <?php echo $this->einheit; ?></h1>
 	<table>
 		<tr>
-			<td>Datum:</td><td><input class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' /></td>
+			<td>Datum:</td>
+            <td>
+                <input class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' />
+            </td>
+            <td>Format: dd.mm.yyyy</td>
 		</tr>
 		<tr>
 			<td>Titel:</td><td><input class='input' type='text' name='titel' id='titel' value='<?php echo $this->tageler->titel; ?>' /></td>
@@ -72,8 +76,7 @@ textarea.input {
                 Index:
                 <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
                        id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
-<!--             </td> --><br />
-<!--             <td style='vertical-align:top'> -->
+                <br />
                 <button onclick="removefield(<?php echo $feld->id; ?>)">Feld entfernen</button>
             </td>
         </tr>
