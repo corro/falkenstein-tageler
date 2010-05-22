@@ -62,13 +62,19 @@ textarea.input {
 ?>
         <tr>
             <td style='vertical-align:top'>
-                <input class='input' style='width:150px' type='text' value='<?php echo $feld->titel; ?>' />:
+                <input class='input' style='width:150px' type='text' name='titel_<?php echo $feld->id; ?>'
+                       id='titel_<?php echo $feld->id; ?>' value='<?php echo $feld->titel; ?>' />:
             </td>
             <td>
-                <textarea class='input'><?php echo $feld->inhalt; ?></textarea>
+                <textarea class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
             </td>
             <td style='vertical-align:top'>
-                <button onclick="removefield(<?php echo $feld->id; ?>)">-</button>
+                Index:
+                <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
+                       id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
+<!--             </td> --><br />
+<!--             <td style='vertical-align:top'> -->
+                <button onclick="removefield(<?php echo $feld->id; ?>)">Feld entfernen</button>
             </td>
         </tr>
 <?php

@@ -31,6 +31,8 @@ class TagelerModelTageler extends JModel
     {
         $db =& JFactory::getDBO();
 
+        $gruppe = mysql_escape_string($gruppe);
+
         $query = "SELECT * FROM #__tageler WHERE einheit = '".$gruppe."'";
         $db->setQuery( $query );
         $tageler = $db->loadObject();
@@ -42,7 +44,9 @@ class TagelerModelTageler extends JModel
 	{
 		$db =& JFactory::getDBO();
 
-		$query = "SELECT * FROM #__tagelerfelder WHERE einheit = '".$gruppe."'";
+        $gruppe = mysql_escape_string($gruppe);
+
+		$query = "SELECT * FROM #__tagelerfelder WHERE einheit = '".$gruppe."' ORDER BY idx";
 		$db->setQuery( $query );
 		$felder = $db->LoadObjectList();
 
@@ -55,12 +59,37 @@ class TagelerModelTageler extends JModel
 		$datum = sprintf("%04d-%02d-%02d", $d[2], $d[1], $d[0]);
 		$db =& JFactory::getDBO();
 
-		$query = "UPDATE #__tageler SET datum='".$datum."', titel='".$data['titel']."', beginn='".$data['beginn']."',
-										schluss='".$data['schluss']."', mitbringen='".$data['mitbringen']."', tenue='".$data['tenue']."'
-				  WHERE einheit='".$data['einheit']."'";
+        $einheit = mysql_escape_string($data['einheit']);
+        $titel = mysql_escape_string($data['titel']);
+        $beginn = mysql_escape_string($data['beginn']);
+        $schluss = mysql_escape_string($data['schluss']);
+        $mitbringen = mysql_escape_string($data['mitbringen']);
+        $tenue = mysql_escape_string($data['tenue']);
+
+		$query = "UPDATE #__tageler SET datum='".$datum."', titel='".$titel."', beginn='".$beginn."',
+										schluss='".$schluss."', mitbringen='".$mitbringen."', tenue='".$tenue."'
+				  WHERE einheit='".$einheit."'";
         
 		$db->setQuery( $query );
 		$db->query();
+
+        $felder = TagelerModelTageler::getFelder($data['einheit']);
+        foreach ($felder as $feld)
+        {
+            $titelname = 'titel_'.$feld->id;
+            $inhaltname = 'inhalt_'.$feld->id;
+            $indexname= 'index_'.$feld->id;
+
+            $titel = mysql_escape_string($data[$titelname]);
+            $inhalt = mysql_escape_string($data[$inhaltname]);
+            $index = mysql_escape_string($data[$indexname]);
+
+            $query = "UPDATE #__tagelerfelder SET titel='".$titel."', inhalt='".$inhalt."', idx=".$index."
+                      WHERE id = ".$feld->id;
+
+            $db->setQuery( $query );
+            $db->query();
+        }
 		
 		return $db->getErrorMsg();
 	}
@@ -69,18 +98,23 @@ class TagelerModelTageler extends JModel
     {
         $db =& JFactory::getDBO();
 
-        $query = "INSERT INTO #__tagelerfelder (einheit, titel, inhalt) VALUES ('".$gruppe."', '<Titel>', '<Inhalt>')";
+        $gruppe = mysql_escape_string($gruppe);
+
+        $query = "INSERT INTO #__tagelerfelder (einheit, titel, inhalt) 
+                  VALUES ('".$gruppe."', '<Titel (kann auch leer sein)>', '<Inhalt>')";
         $db->setQuery( $query );
         $db->query();
 
         return $db->getErrorMsg();
     }
 
-    function remField($fid)
+    function remField($fieldId)
     {
         $db =& JFactory::getDBO();
 
-        $query = "DELETE FROM #__tagelerfelder WHERE id = ".$fid;
+        $fieldId = mysql_escape_string($fieldId);
+
+        $query = "DELETE FROM #__tagelerfelder WHERE id = ".$field;
         $db->setQuery( $query );
         $db->query();
 

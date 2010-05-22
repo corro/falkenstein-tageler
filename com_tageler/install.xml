@@ -17,11 +17,17 @@
 		<filename>tageler.php</filename>
 		<filename>index.html</filename>
 		<filename>models/tageler.php</filename>
+        <filename>models/tagelerubersicht.php</filename>
         <filename>views/index.html</filename>
 		<filename>views/tageler/index.html</filename>
 		<filename>views/tageler/view.html.php</filename>
 		<filename>views/tageler/tmpl/index.html</filename>
 		<filename>views/tageler/tmpl/default.php</filename>
+		<filename>views/tageler/tmpl/form.php</filename>
+		<filename>views/tagelerubersicht/index.html</filename>
+		<filename>views/tagelerubersicht/view.html.php</filename>
+		<filename>views/tagelerubersicht/tmpl/default.php</filename>
+		<filename>views/tagelerubersicht/tmpl/index.html</filename>
 	</files>
 
 	<install>

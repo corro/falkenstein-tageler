@@ -11,12 +11,16 @@ function date_mysql2german($date)
 if ($this->tageler->datum >= date("Y-m-d"))
 {
 ?>
+    <style type='text/css'>
+        td {
+            padding-bottom:10px;
+/*             padding-right:20px; */
+        }
+    </style>
 
 	<h1>Tageler für <?php echo $this->einheit; ?> am <?php echo date_mysql2german($this->tageler->datum); ?></h1>
+    <h2><?php echo $this->tageler->titel; ?></h2>
 	<table>
-		<tr>
-			<td>Titel:</td><td><?php echo $this->tageler->titel; ?></td>
-		</tr>
 		<tr>
 			<td>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
 		</tr>
@@ -32,7 +36,10 @@ if ($this->tageler->datum >= date("Y-m-d"))
 <?php
     foreach($this->felder as $feld)
     {
-        echo "<tr><td>".$feld->titel."</td><td>".nl2br($feld->inhalt)."</td></tr>";
+        if ($feld->titel)
+            echo "<tr><td style='vertical-align:top'>".$feld->titel.":</td><td>".nl2br($feld->inhalt)."</td></tr>";
+        else
+            echo "<tr><td></td><td>".nl2br($feld->inhalt)."</td></tr>";
     }
 ?>
 	</table>

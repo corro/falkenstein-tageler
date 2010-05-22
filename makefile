@@ -3,8 +3,8 @@ all:
 	zip -r mod_tageler.zip mod_tageler/* -x mod_tageler/.hg
 
 install:
-	cp -r com_tageler/site/* /var/www/joomla/components/com_tageler/
-	cp -r mod_tageler/* /var/www/joomla/modules/mod_tageler/
+	sudo -u www-data cp -r com_tageler/site/* /var/www/joomla/components/com_tageler/
+	sudo -u www-data cp -r mod_tageler/* /var/www/joomla/modules/mod_tageler/
 
 uninstall:
 	rm -R /var/www/joomla/components/com_tageler
