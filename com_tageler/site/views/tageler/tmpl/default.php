@@ -17,18 +17,39 @@ if ($this->tageler->datum >= date("Y-m-d"))
 {
 ?>
     <style type='text/css'>
-        td {
+        td.label {
+            width:120px;
             padding-bottom:10px;
             vertical-align:top;
         }
-        td.label {
-            width:120px;
-        }
     </style>
 
-	<h1>Tageler für <?php echo $this->einheit; ?> am <?php echo date_mysql2german($this->tageler->datum); ?></h1>
-    <h2><?php echo $this->tageler->titel; ?></h2>
-	<table>
+    <div class="componentheading">
+        Tageler für <?php echo $this->einheit; ?> am <?php echo date_mysql2german($this->tageler->datum); ?>
+    </div>
+
+    
+	<table class="contentpaneopen"  style='padding-bottom:10px;'>
+        <tr>
+            <td class="contentheading">
+                <?php echo $this->tageler->titel; ?>
+            </td>
+            <?php 
+            $user =& JFactory::getUser();
+            if ($user->authorize('com_tageler', 'edit'))
+            { ?>
+            <td class="buttonheading">
+                <span class='hasTip' title='Tageler editieren'>
+                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $this->tageler->einheit; ?>&task=edit'>
+                        <img src='images/M_images/edit.png' alt='edit' />
+                    </a>
+                </span>
+            </td>
+            <?php
+            } ?>
+        </tr>
+    </table>
+    <table class="contentpaneopen">
 		<tr>
 			<td class='label'>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
 		</tr>
@@ -59,11 +80,11 @@ else
 	echo "<h1>Kein aktueller Tageler für ".ucwords($this->tageler->einheit)." vorhanden</h1>";
 }
 
-$task = JRequest::getWord("task");
-$user =& JFactory::getUser();
-
-if ($user->authorize('com_tageler', 'edit') && $task != "edit")
-{
-	echo "<a href='index.php?option=com_tageler&view=tageler&einheit=".$this->tageler->einheit."&task=edit'>";
-	echo "<input type='button' value='Editieren' /></a>";
-}
+// $task = JRequest::getWord("task");
+// $user =& JFactory::getUser();
+// 
+// if ($user->authorize('com_tageler', 'edit') && $task != "edit")
+// {
+// 	echo "<a href='index.php?option=com_tageler&view=tageler&einheit=".$this->tageler->einheit."&task=edit'>";
+// 	echo "<input type='button' value='Editieren' /></a>";
+// }

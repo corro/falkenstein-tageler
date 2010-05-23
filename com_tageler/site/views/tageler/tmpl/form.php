@@ -2,6 +2,18 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
+JHTML::_('behavior.calendar'); //load the calendar behavior
+$document =& JFactory::getDocument();
+$document->addScriptDeclaration(
+    "window.addEvent('domready', function() {Calendar.setup({
+        inputField     :    'datum',     // id of the input field
+        ifFormat       :    '%d.%m.%Y',      // format of the input field
+        button         :    'datum_img',  // trigger for the calendar (button ID)
+        align          :    'Tl',           // alignment (defaults to 'Bl')
+        singleClick    :    true
+    });});"
+);
+
 function date_mysql2german($date)
 {
     $d    =    explode("-",$date);
@@ -35,13 +47,20 @@ textarea.input {
 }
 </style>
 
+<div class="componentheading">
+    Tageler editieren für <?php echo $this->einheit; ?>
+</div>
+
 <form action="index.php" method="post" name="adminForm" id="adminForm">
-	<h1>Tageler editieren für <?php echo $this->einheit; ?></h1>
+    <fieldset>
+    <legend>Tageler</legend>
 	<table>
 		<tr>
 			<td>Datum:</td>
             <td>
-                <input class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' />
+<!--                 <input class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' /> -->
+                <input type="text" name="datum" id="datum" value="<?php echo date_mysql2german($this->tageler->datum); ?>" class="inputbox" size="25" maxlength="19" />
+                <img class="calendar" src="templates/system/images/calendar.png" alt="calendar" name='datum_img' id="datum_img" />
             </td>
             <td>Format: dd.mm.yyyy</td>
 		</tr>
@@ -60,29 +79,29 @@ textarea.input {
 		<tr>
 			<td style='vertical-align:top;'>Tenü:</td><td><textarea class='input' name='tenue' id='tenue'><?php echo $this->tageler->tenue; ?></textarea></td>
 		</tr>
-<?php
-    foreach($this->felder as $feld)
-    {
-?>
-        <tr>
-            <td style='vertical-align:top'>
-                <input class='input' style='width:150px' type='text' name='titel_<?php echo $feld->id; ?>'
-                       id='titel_<?php echo $feld->id; ?>' value='<?php echo $feld->titel; ?>' />:
-            </td>
-            <td>
-                <textarea class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
-            </td>
-            <td style='vertical-align:top'>
-                Index:
-                <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
-                       id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
-                <br />
-                <button onclick="removefield(<?php echo $feld->id; ?>)">Feld entfernen</button>
-            </td>
-        </tr>
-<?php
-    }
-?>
+        <?php
+        foreach($this->felder as $feld)
+        {
+        ?>
+            <tr>
+                <td style='vertical-align:top'>
+                    <input class='input' style='width:150px' type='text' name='titel_<?php echo $feld->id; ?>'
+                        id='titel_<?php echo $feld->id; ?>' value='<?php echo $feld->titel; ?>' />:
+                </td>
+                <td>
+                    <textarea class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
+                </td>
+                <td style='vertical-align:top'>
+                    Index:
+                    <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
+                        id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
+                    <br />
+                    <button onclick="removefield(<?php echo $feld->id; ?>)">Feld entfernen</button>
+                </td>
+            </tr>
+        <?php
+        }
+        ?>
 	</table>
 
 	<input type="hidden" name="option" value="com_tageler" />
@@ -96,4 +115,5 @@ textarea.input {
 	<button onclick="submitbutton('save')">Speichern</button>
 	<button onclick="submitbutton('cancel')">Abbrechen</button>
     <button onclick="submitbutton('addField')">Feld hinzufügen</button>
+    </fieldset>
 </form>

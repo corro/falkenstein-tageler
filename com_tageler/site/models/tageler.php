@@ -114,7 +114,7 @@ class TagelerModelTageler extends JModel
 
         $fieldId = mysql_escape_string($fieldId);
 
-        $query = "DELETE FROM #__tagelerfelder WHERE id = ".$field;
+        $query = "DELETE FROM #__tagelerfelder WHERE id = ".$fieldId;
         $db->setQuery( $query );
         $db->query();
 
