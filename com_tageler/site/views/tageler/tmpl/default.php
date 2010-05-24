@@ -77,14 +77,26 @@ if ($this->tageler->datum >= date("Y-m-d"))
 }
 else
 {
-	echo "<h1>Kein aktueller Tageler für ".ucwords($this->tageler->einheit)." vorhanden</h1>";
+?>
+	<table class="contentpaneopen"  style='padding-bottom:10px;'>
+        <tr>
+            <td class="contentheading">
+                Kein aktueller Tageler für <?php echo $this->einheit; ?> vorhanden.
+            </td>
+            <?php 
+            $user =& JFactory::getUser();
+            if ($user->authorize('com_tageler', 'edit'))
+            { ?>
+            <td class="buttonheading">
+                <span class='hasTip' title='Tageler editieren'>
+                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $this->tageler->einheit; ?>&task=edit'>
+                        <img src='images/M_images/edit.png' alt='edit' />
+                    </a>
+                </span>
+            </td>
+            <?php
+            } ?>
+        </tr>
+    </table>
+<?php
 }
-
-// $task = JRequest::getWord("task");
-// $user =& JFactory::getUser();
-// 
-// if ($user->authorize('com_tageler', 'edit') && $task != "edit")
-// {
-// 	echo "<a href='index.php?option=com_tageler&view=tageler&einheit=".$this->tageler->einheit."&task=edit'>";
-// 	echo "<input type='button' value='Editieren' /></a>";
-// }

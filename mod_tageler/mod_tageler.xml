@@ -8,6 +8,8 @@
         <filename module="mod_tageler">mod_tageler.php</filename>
         <filename>index.html</filename>
         <filename>helper.php</filename>
+        <filename>img/old.png</filename>
+        <filename>img/new.png</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
