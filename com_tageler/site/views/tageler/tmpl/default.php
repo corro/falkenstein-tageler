@@ -13,6 +13,20 @@ function ball2img($str)
     return str_replace("*", "<img src='components/com_tageler/img/falkipfeilgruen.gif' />", $str);
 }
 
+function getEditButton($tageler)
+{
+    $user =& JFactory::getUser();
+    if ($user->authorize('com_tageler', 'edit'))
+    {
+        return "<span class='hasTip' title='Tageler editieren'>
+                    <a href='index.php?option=com_tageler&view=tageler&einheit=".$tageler->einheit."&task=edit'>
+                        <img src='images/M_images/edit.png' alt='edit' />
+                    </a>
+                </span>";
+    }
+    return '';
+}
+
 if ($this->tageler->datum >= date("Y-m-d"))
 {
 ?>
@@ -26,27 +40,14 @@ if ($this->tageler->datum >= date("Y-m-d"))
 
     <div class="componentheading">
         Tageler für <?php echo $this->einheit; ?> am <?php echo date_mysql2german($this->tageler->datum); ?>
+         <?php echo getEditButton($this->tageler); ?>
     </div>
-
     
 	<table class="contentpaneopen"  style='padding-bottom:10px;'>
         <tr>
             <td class="contentheading">
                 <?php echo $this->tageler->titel; ?>
             </td>
-            <?php 
-            $user =& JFactory::getUser();
-            if ($user->authorize('com_tageler', 'edit'))
-            { ?>
-            <td class="buttonheading">
-                <span class='hasTip' title='Tageler editieren'>
-                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $this->tageler->einheit; ?>&task=edit'>
-                        <img src='images/M_images/edit.png' alt='edit' />
-                    </a>
-                </span>
-            </td>
-            <?php
-            } ?>
         </tr>
     </table>
     <table class="contentpaneopen">
@@ -78,25 +79,9 @@ if ($this->tageler->datum >= date("Y-m-d"))
 else
 {
 ?>
-	<table class="contentpaneopen"  style='padding-bottom:10px;'>
-        <tr>
-            <td class="contentheading">
-                Kein aktueller Tageler für <?php echo $this->einheit; ?> vorhanden.
-            </td>
-            <?php 
-            $user =& JFactory::getUser();
-            if ($user->authorize('com_tageler', 'edit'))
-            { ?>
-            <td class="buttonheading">
-                <span class='hasTip' title='Tageler editieren'>
-                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $this->tageler->einheit; ?>&task=edit'>
-                        <img src='images/M_images/edit.png' alt='edit' />
-                    </a>
-                </span>
-            </td>
-            <?php
-            } ?>
-        </tr>
-    </table>
+    <div class="componentheading">
+        Kein aktueller Tageler für <?php echo $this->einheit; ?> vorhanden
+        <?php echo getEditButton($this->tageler); ?>
+    </div>
 <?php
 }
