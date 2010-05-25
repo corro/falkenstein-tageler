@@ -40,7 +40,7 @@ function removefield(id)
 
 <style type="text/css">
 .input {
-	width: 300px;
+	width: 260px;
 }
 textarea.input {
 	height: 100px;
@@ -59,7 +59,7 @@ textarea.input {
 			<td>Datum:</td>
             <td>
 <!--                 <input class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' /> -->
-                <input type="text" name="datum" id="datum" value="<?php echo date_mysql2german($this->tageler->datum); ?>" class="inputbox" size="25" maxlength="19" />
+                <input type="text" name="datum" id="datum" value="<?php echo date_mysql2german($this->tageler->datum); ?>" style="width:240px" />
                 <img class="calendar" src="templates/system/images/calendar.png" alt="calendar" name='datum_img' id="datum_img" />
             </td>
             <td>Format: dd.mm.yyyy</td>
@@ -85,7 +85,7 @@ textarea.input {
         ?>
             <tr>
                 <td style='vertical-align:top'>
-                    <input class='input' style='width:150px' type='text' name='titel_<?php echo $feld->id; ?>'
+                    <input class='input' style='width:120px' type='text' name='titel_<?php echo $feld->id; ?>'
                         id='titel_<?php echo $feld->id; ?>' value='<?php echo $feld->titel; ?>' />:
                 </td>
                 <td>

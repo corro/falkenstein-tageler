@@ -47,16 +47,33 @@ function date_mysql2german($date)
     foreach($this->allTageler as $tageler)
     {
     ?>
-    <tr>
-        <td class='adjacent'>
-            <a href='index.php?option=com_tageler&view=tageler&einheit=".$tageler->einheit."'>
-                <?php echo ucwords($tageler->einheit); ?>
-            </a>
-        </td>
-        <td class='adjacent'><?php echo $tageler->titel; ?></td>
-        <td class='adjacent'><?php echo $tageler->beginn; ?></td>
-        <td class='adjacent'><?php echo $tageler->schluss; ?></td>
-    </tr>
+        
     <?php
+        if ($tageler->datum >= date("Y-m-d"))
+        { ?>
+            <tr>
+                <td class='adjacent'>
+                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $tageler->einheit; ?>'>
+                        <?php echo ucwords($tageler->einheit); ?>
+                    </a>
+                </td>
+                <td class='adjacent'><?php echo $tageler->titel; ?></td>
+                <td class='adjacent'><?php echo $tageler->beginn; ?></td>
+                <td class='adjacent'><?php echo $tageler->schluss; ?></td>
+            </tr>
+    <?php
+        }
+        else
+        { ?>
+            <tr>
+                <td class='adjacent'>
+                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $tageler->einheit; ?>'>
+                        <?php echo ucwords($tageler->einheit); ?>
+                    </a>
+                </td>
+                <td class='adjacent' colspan='3'>Kein aktueller Tageler vorhanden</td>
+            </tr>
+    <?php
+        }
     } ?>
 </table>

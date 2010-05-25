@@ -21,11 +21,14 @@ class TagelerViewTagelerubersicht extends JView
 {
 	function display($tpl = null)
 	{
-//         $allTageler = $this->get( 'AllTageler' );
         $model = $this->getModel();
         $allTageler = $model->getTageler();
         $this->assignRef( 'allTageler', $allTageler );
-		 
-		parent::display($tpl);
+
+        global $mainframe;
+        $breadcrumbs = &$mainframe->getPathWay();
+        $breadcrumbs->addItem( 'Tageler', JRoute::_('index.php?option=com_tageler&view=tagelerubersicht') );
+        
+        parent::display($tpl);
 	}
 }
