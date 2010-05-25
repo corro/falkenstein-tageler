@@ -5,7 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 function date_mysql2german($date)
 {
     $d    =    explode("-",$date);
-    
     return    sprintf("%02d.%02d.%04d", $d[2], $d[1], $d[0]);
 }
 ?>
@@ -38,11 +37,12 @@ function date_mysql2german($date)
 <table class='tageler'>
     <tr class="header">
         <td class='adjacent'>Einheit</td>
+        <td class='adjacent'>Datum</td>
         <td class='adjacent'>Titel</td>
         <td class='adjacent'>Beginn</td>
         <td class='adjacent'>Schluss</td>
     </tr>
-    <tr><td colspan='4'></td></tr>
+<!--     <tr><td colspan='5'></td></tr> -->
     <?php
     foreach($this->allTageler as $tageler)
     {
@@ -54,9 +54,10 @@ function date_mysql2german($date)
             <tr>
                 <td class='adjacent'>
                     <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $tageler->einheit; ?>'>
-                        <?php echo ucwords($tageler->einheit); ?>
+                        <?php echo $tageler->name; ?>
                     </a>
                 </td>
+                <td class='adjacent'><?php echo date_mysql2german($tageler->datum); ?></td>
                 <td class='adjacent'><?php echo $tageler->titel; ?></td>
                 <td class='adjacent'><?php echo $tageler->beginn; ?></td>
                 <td class='adjacent'><?php echo $tageler->schluss; ?></td>
@@ -68,10 +69,10 @@ function date_mysql2german($date)
             <tr>
                 <td class='adjacent'>
                     <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $tageler->einheit; ?>'>
-                        <?php echo ucwords($tageler->einheit); ?>
+                        <?php echo $tageler->name; ?>
                     </a>
                 </td>
-                <td class='adjacent' colspan='3'>Kein aktueller Tageler vorhanden</td>
+                <td class='adjacent' colspan='4' style='font-style:italic'>Kein aktueller Tageler vorhanden</td>
             </tr>
     <?php
         }

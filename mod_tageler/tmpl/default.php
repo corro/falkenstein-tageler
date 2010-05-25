@@ -13,7 +13,7 @@ foreach ($tageler as $t)
 		echo "<img src='modules/mod_tageler/img/old.png' alt='old' style='margin-right:10px' />";
 	}
 
-	echo "<a href='index.php?option=com_tageler&view=tageler&einheit=".$t->einheit."'>".ucwords($t->einheit)."</a><br />";
+	echo "<a href='index.php?option=com_tageler&view=tageler&einheit=".$t->einheit."'>".$t->name."</a><br />";
 }
 
-echo "<br /><a href='index.php?option=com_tageler&view=tagelerubersicht'>Alle Tageler</a><br />";
+echo "<div style='margin-left:20px'><a href='index.php?option=com_tageler&view=tagelerubersicht'>Alle Tageler</a></div><br />";

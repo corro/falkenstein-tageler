@@ -28,7 +28,10 @@ class TagelerViewTagelerubersicht extends JView
         global $mainframe;
         $breadcrumbs = &$mainframe->getPathWay();
         $breadcrumbs->addItem( 'Tageler', JRoute::_('index.php?option=com_tageler&view=tagelerubersicht') );
-        
+
+        $document = JFactory::getDocument();
+        $document->setTitle('Tagelerübersicht');
+
         parent::display($tpl);
 	}
 }

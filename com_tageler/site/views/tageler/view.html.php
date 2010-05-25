@@ -26,15 +26,16 @@ class TagelerViewTageler extends JView
         $tageler = $model->getTageler($einheit);
         $felder = $model->getFelder($einheit);
 
-        $einheit = ucwords($einheit);
         $this->assignRef( 'tageler', $tageler );
         $this->assignRef( 'felder', $felder );
-        $this->assignRef( 'einheit', $einheit );
 
         global $mainframe;
         $breadcrumbs = &$mainframe->getPathWay();
         $breadcrumbs->addItem( 'Tageler', JRoute::_('index.php?option=com_tageler&view=tagelerubersicht') );
-        $breadcrumbs->addItem( $einheit, JRoute::_('index.php?option=com_tageler&view=tageler&einheit='.$tageler->einheit) );
+        $breadcrumbs->addItem( $tageler->name, JRoute::_('index.php?option=com_tageler&view=tageler&einheit='.$tageler->einheit) );
+        
+        $document = JFactory::getDocument();
+        $document->setTitle('Tageler für '.$tageler->name);
 
 		parent::display($tpl);
 	}

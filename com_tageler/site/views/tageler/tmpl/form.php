@@ -48,7 +48,7 @@ textarea.input {
 </style>
 
 <div class="componentheading">
-    Tageler editieren für <?php echo $this->einheit; ?>
+    Tageler editieren für <?php echo $this->tageler->name; ?>
 </div>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
@@ -58,7 +58,6 @@ textarea.input {
 		<tr>
 			<td>Datum:</td>
             <td>
-<!--                 <input class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' /> -->
                 <input type="text" name="datum" id="datum" value="<?php echo date_mysql2german($this->tageler->datum); ?>" style="width:240px" />
                 <img class="calendar" src="templates/system/images/calendar.png" alt="calendar" name='datum_img' id="datum_img" />
             </td>

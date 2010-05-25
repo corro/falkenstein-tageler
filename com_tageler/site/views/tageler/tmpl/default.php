@@ -39,7 +39,7 @@ if ($this->tageler->datum >= date("Y-m-d"))
     </style>
 
     <div class="componentheading">
-        Tageler für <?php echo $this->einheit; ?> am <?php echo date_mysql2german($this->tageler->datum); ?>
+        Tageler für <?php echo $this->tageler->name; ?> am <?php echo date_mysql2german($this->tageler->datum); ?>
          <?php echo getEditButton($this->tageler); ?>
     </div>
     
@@ -80,7 +80,7 @@ else
 {
 ?>
     <div class="componentheading">
-        Kein aktueller Tageler für <?php echo $this->einheit; ?> vorhanden
+        Kein aktueller Tageler für <?php echo $this->tageler->name; ?> vorhanden
         <?php echo getEditButton($this->tageler); ?>
     </div>
 <?php
