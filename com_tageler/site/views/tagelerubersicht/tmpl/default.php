@@ -42,7 +42,6 @@ function date_mysql2german($date)
         <td class='adjacent'>Beginn</td>
         <td class='adjacent'>Schluss</td>
     </tr>
-<!--     <tr><td colspan='5'></td></tr> -->
     <?php
     foreach($this->allTageler as $tageler)
     {

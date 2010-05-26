@@ -12,26 +12,31 @@
 jimport( 'joomla.application.component.view');
 
 /**
- * Viewklasse für das Tageler Component
+ * Viewklasse für die Tagelerübersicht
  *
  * @package		Falkenstein.Joomla
  * @subpackage	Components
  */
 class TagelerViewTagelerubersicht extends JView
 {
-	function display($tpl = null)
-	{
+    function display($tpl = null)
+    {
+        // Daten laden
         $model = $this->getModel();
         $allTageler = $model->getTageler();
+
+        // Inhalt für das Template definieren
         $this->assignRef( 'allTageler', $allTageler );
 
+        // Breadcrumb anpassen
         global $mainframe;
         $breadcrumbs = &$mainframe->getPathWay();
         $breadcrumbs->addItem( 'Tageler', JRoute::_('index.php?option=com_tageler&view=tagelerubersicht') );
 
+        // Browsertitel anpassen
         $document = JFactory::getDocument();
         $document->setTitle('Tagelerübersicht');
 
         parent::display($tpl);
-	}
+    }
 }

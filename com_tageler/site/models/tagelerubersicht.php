@@ -10,7 +10,7 @@
  */
 
 // Sicherheitscheck
-defined('_JEXEC') or die();
+defined('_JEXEC') or die('Restricted access');
 
 // Import der Basisklasse
 jimport( 'joomla.application.component.model' );
@@ -23,13 +23,22 @@ jimport( 'joomla.application.component.model' );
  */
 class TagelerModelTagelerubersicht extends JModel
 {
+    /**
+     * Liefert die Tageler aller Einheiten
+     * @return Tageler aller Einheiten
+     */
     function getTageler()
     {
         $db =& JFactory::getDBO();
 
-        $query = 'SELECT * FROM #__tageler';
+        $query = 'SELECT * FROM '.$db->nameQuote('#__tageler');
         $db->setQuery( $query );
         $allTageler = $db->loadObjectList();
+
+        if (is_null($allTageler))
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()),'error');
+        }
 
         return $allTageler;
     }

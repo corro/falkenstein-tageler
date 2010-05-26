@@ -20,6 +20,7 @@ if($controller = JRequest::getVar('controller'))
 	require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
 }
 
+// Editierfunktionen beschränken
 $auth =& JFactory::getACL();
 $auth->addACL('com_tageler', 'edit', 'users', 'super administrator');
 $auth->addACL('com_tageler', 'edit', 'users', 'administrator');
@@ -30,7 +31,7 @@ $classname	= 'TagelerController'.$controller;
 $controller = new $classname();
 
 // Request bearbeiten
-$controller->execute( JRequest::getVar('task'));
+$controller->execute(JRequest::getVar('task'));
 
 // Redirect wenn nötig
 $controller->redirect();

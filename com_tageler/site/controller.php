@@ -12,85 +12,93 @@
 jimport('joomla.application.component.controller');
 
 /**
- * Tageler Component Controller
+ * Controller für das Tageler Component
  *
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
 class TagelerController extends JController
 {
-	/**
-	 * Method to display the view
-	 *
-	 * @access	public
-	 */
-	function display()
-	{
-		parent::display();
-	}
+    /**
+     * Standardansicht
+     */
+    function display()
+    {
+        parent::display();
+    }
 
-	/**
-	* Method to call the edit form
-	*/
-	function edit()
-	{
-		JRequest::setVar( 'layout', 'form' );
-		parent::display();
-	}
+    /**
+     * Editieransicht
+     */
+    function edit()
+    {
+        JRequest::setVar( 'layout', 'form' );
+        parent::display();
+    }
 
-	/**
-	* Method to get the data from the form and let the model save it
-	*/
-	function save()
-	{
-		// Check for request forgeries
-		JRequest::checkToken() or jexit( 'Invalid Token' );
+    /**
+     * Speicheraufruf
+     */
+    function save()
+    {
+        // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
+        JRequest::checkToken() or jexit('Invalid Token');
 
-// 		// get the model
-		$model =& $this->getModel();
-//  
-// 		//get data from request
-		$post = JRequest::get('post');
+        $model =& $this->getModel();
+        $post = JRequest::get('post');
 
-		$message = $model->store($post);
+        // Speichern der Informationen
+        $model->store($post);
 
-		$einheit = JRequest::getWord('einheit');
-		$view = JRequest::getWord('view');
-		$this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit, $message);
-	}
+        $einheit = JRequest::getWord('einheit');
+        $view = JRequest::getWord('view');
+        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
+    }
 
+    /**
+     * Aufruf zum Hinzufügen eines Zusatzfeldes
+     */
     function addField()
     {
-        $model =& $this->getModel();
+        // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
+        JRequest::checkToken() or jexit('Invalid Token');
 
         $einheit = JRequest::getWord('einheit');
+        $view = JRequest::getWord('view');
+
+        $model =& $this->getModel();
+
+        // Zusatzfeld hinzufügen
         $model->addField($einheit);
 
-        $view = JRequest::getWord('view');
         $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit.'&task=edit');
     }
 
+    /**
+     * Aufruf zum Entfernen eines Zusatzfeldes
+     */
     function remField()
     {
-        $model =& $this->getModel();
+        // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
+        JRequest::checkToken() or jexit('Invalid Token');
 
-        $fid = JRequest::getInt('fieldId');
-        $model->remField($fid);
-
-        $view = JRequest::getWord('view');
+        $fieldId = JRequest::getInt('fieldId');
+        $view    = JRequest::getWord('view');
         $einheit = JRequest::getWord('einheit');
+
+        $model =& $this->getModel();
+        $model->remField($fieldId);
+
         $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit.'&task=edit');
     }
 
-	/**
-	* Cancel, redirect to component
-	*/
-	function cancel()
-	{
-		$einheit = JRequest::getWord('einheit');
-		$view = JRequest::getWord('view');
-		$this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
-	}
-	
+    /**
+     * Abbruchaufruf -> Redirect
+     */
+    function cancel()
+    {
+        $einheit = JRequest::getWord('einheit');
+        $view = JRequest::getWord('view');
+        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
+    }
 }
-?>

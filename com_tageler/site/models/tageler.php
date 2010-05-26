@@ -10,7 +10,7 @@
  */
 
 // Sicherheitscheck
-defined('_JEXEC') or die();
+defined('_JEXEC') or die('Restricted access');
 
 // Import der Basisklasse
 jimport( 'joomla.application.component.model' );
@@ -27,51 +27,76 @@ class TagelerModelTageler extends JModel
      * Liefert den aktuellen Tageler für die Einheit
      * @return Tageler für die Einheit
      */
-    function getTageler($gruppe)
+    function getTageler($einheit)
     {
-        $db =& JFactory::getDBO();
+        $app =& JFactory::getApplication();
+        $db  =& JFactory::getDBO();
 
-        $gruppe = mysql_escape_string($gruppe);
+        $query = 'SELECT * FROM '.$db->nameQuote('#__tageler').
+                 'WHERE einheit = '.$db->quote($einheit);
 
-        $query = "SELECT * FROM #__tageler WHERE einheit = '".$gruppe."'";
-        $db->setQuery( $query );
+        $db->setQuery($query);
         $tageler = $db->loadObject();
+
+        if (is_null($tageler))
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()),'error');
+        }
 
         return $tageler;
     }
 
-	function getFelder($gruppe)
-	{
-		$db =& JFactory::getDBO();
+    /**
+     * Liefert die Zusatzfelder des Tagelers der Einheit
+     * @return Zusatzfelder für den Tageler der Einheit
+     */
+    function getFelder($einheit)
+    {
+        $app =& JFactory::getApplication();
+        $db =& JFactory::getDBO();
 
-        $gruppe = mysql_escape_string($gruppe);
+        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
+                 'WHERE einheit = '.$db->quote($einheit).
+                 'ORDER BY '.$db->nameQuote('idx');
 
-		$query = "SELECT * FROM #__tagelerfelder WHERE einheit = '".$gruppe."' ORDER BY idx";
-		$db->setQuery( $query );
-		$felder = $db->LoadObjectList();
+        $db->setQuery( $query );
+        $felder = $db->loadObjectList();
 
-		return $felder;
-	}
+        if (is_null($felder))
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+        }
+        return $felder;
+    }
 
-	function store($data)
-	{
-		$d = explode('.', $data['datum']);
-		$datum = sprintf("%04d-%02d-%02d", $d[2], $d[1], $d[0]);
-		$db =& JFactory::getDBO();
+    /**
+     * Speichert den Tageler mit den Daten aus dem JRequest
+     */
+    function store($data)
+    {
+        $app =& JFactory::getApplication();
+        $db  =& JFactory::getDBO();
 
-        $einheit = mysql_escape_string($data['einheit']);
-        $titel = mysql_escape_string($data['titel']);
-        $beginn = mysql_escape_string($data['beginn']);
-        $schluss = mysql_escape_string($data['schluss']);
-        $mitbringen = mysql_escape_string($data['mitbringen']);
-        $tenue = mysql_escape_string($data['tenue']);
+        $d          = explode('.', $data['datum']);
+        $datum      = $db->quote(sprintf("%04d-%02d-%02d", $d[2], $d[1], $d[0]));
+        $titel      = $db->quote($data['titel']);
+        $beginn     = $db->quote($data['beginn']);
+        $schluss    = $db->quote($data['schluss']);
+        $mitbringen = $db->quote($data['mitbringen']);
+        $tenue      = $db->quote($data['tenue']);
+        $einheit    = $db->quote($data['einheit']);
 
-		$query = "UPDATE #__tageler SET datum='".$datum."', titel='".$titel."', beginn='".$beginn."',
-										schluss='".$schluss."', mitbringen='".$mitbringen."', tenue='".$tenue."'
-				  WHERE einheit='".$einheit."'";
-        
-		$db->setQuery( $query );
-		$db->query();
+        $query = 'UPDATE '.$db->nameQuote('#__tageler').
+                 'SET '.$db->nameQuote('datum').'='.$datum.', '.$db->nameQuote('titel').'='.$titel.', '.
+                        $db->nameQuote('beginn').'='.$beginn.', '.$db->nameQuote('schluss').'='.$schluss.', '.
+                        $db->nameQuote('mitbringen').'='.$mitbringen.', '.$db->nameQuote('tenue').'='.$tenue.
+                 'WHERE '.$db->nameQuote('einheit').'='.$einheit;
+
+        $db->setQuery($query);
+        if (!$db->query())
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+        }
 
         $felder = TagelerModelTageler::getFelder($data['einheit']);
         foreach ($felder as $feld)
@@ -80,41 +105,58 @@ class TagelerModelTageler extends JModel
             $inhaltname = 'inhalt_'.$feld->id;
             $indexname= 'index_'.$feld->id;
 
-            $titel = mysql_escape_string($data[$titelname]);
-            $inhalt = mysql_escape_string($data[$inhaltname]);
-            $index = mysql_escape_string($data[$indexname]);
+            $titel = $db->quote($data[$titelname]);
+            $inhalt = $db->quote($data[$inhaltname]);
+            $index = $db->quote($data[$indexname]);
+            $id = $db->quote($feld->id);
 
-            $query = "UPDATE #__tagelerfelder SET titel='".$titel."', inhalt='".$inhalt."', idx=".$index."
-                      WHERE id = ".$feld->id;
+            $query = 'UPDATE '.$db->nameQuote('#__tagelerfelder').
+                     'SET '.$db->nameQuote('titel').'='.$titel.', '.$db->nameQuote('inhalt').'='.$inhalt.', '.
+                            $db->nameQuote('idx').'='.$index.
+                     'WHERE '.$db->nameQuote('id').'='.$id;
 
-            $db->setQuery( $query );
-            $db->query();
+            $db->setQuery($query);
+            if (!$db->query())
+            {
+                $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+            }
         }
-		
-		return $db->getErrorMsg();
-	}
-
-    function addField($gruppe)
-    {
-        $db =& JFactory::getDBO();
-
-        $gruppe = mysql_escape_string($gruppe);
-
-        $query = "INSERT INTO #__tagelerfelder (einheit, titel, inhalt) 
-                  VALUES ('".$gruppe."', '<Titel (kann auch leer sein)>', '<Inhalt>')";
-        $db->setQuery( $query );
-        $db->query();
-
-        return $db->getErrorMsg();
     }
 
+    /**
+     * Fügt dem Tageler der Einheit ein Zusatzfeld hinzu
+     */
+    function addField($einheit)
+    {
+        $app =& JFactory::getApplication();
+        $db  =& JFactory::getDBO();
+
+        $einheit = $db->quote($einheit);
+        $titel   = $db->quote('Titel');
+        $inhalt  = $db->quote('Inhalt');
+
+        $query = 'INSERT INTO '.$db->nameQuote('#__tagelerfelder').
+                            '('.$db->nameQuote('einheit').', '.$db->nameQuote('titel').', '.$db->nameQuote('inhalt').')'.
+                 'VALUES ('.$einheit.', '.$titel.', '.$inhalt.')';
+
+        $db->setQuery($query);
+        if (!$db->query())
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+        }
+    }
+
+    /**
+     * Entfernt das Zusatzfeld mit der angegebenen Id
+     */
     function remField($fieldId)
     {
-        $db =& JFactory::getDBO();
+        $app =& JFactory::getApplication();
+        $db  =& JFactory::getDBO();
 
-        $fieldId = mysql_escape_string($fieldId);
+        $query = 'DELETE FROM '.$db->nameQuote('#__tagelerfelder').
+                 'WHERE '.$db->nameQuote('id').'='.$db->quote($fieldId);
 
-        $query = "DELETE FROM #__tagelerfelder WHERE id = ".$fieldId;
         $db->setQuery( $query );
         $db->query();
 

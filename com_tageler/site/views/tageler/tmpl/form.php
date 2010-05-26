@@ -2,7 +2,7 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
-JHTML::_('behavior.calendar'); //load the calendar behavior
+JHTML::_('behavior.calendar'); // Kalender-Script vorbereiten
 $document =& JFactory::getDocument();
 $document->addScriptDeclaration(
     "window.addEvent('domready', function() {Calendar.setup({
@@ -94,8 +94,9 @@ textarea.input {
                     Index:
                     <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
                         id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
-                    <br />
-                    <button onclick="removefield(<?php echo $feld->id; ?>)">Feld entfernen</button>
+                    <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
+                        <img src='images/cancel_f2.png' style='height:20px' alt='Feld entfernen' />
+                    </button>
                 </td>
             </tr>
         <?php
