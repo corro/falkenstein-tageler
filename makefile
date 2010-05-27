@@ -4,6 +4,7 @@ all:
 
 install:
 	sudo -u www-data cp -r com_tageler/site/* /var/www/joomla/components/com_tageler/
+	sudo -u www-data cp -r com_tageler/admin/* /var/www/joomla/administrator/components/com_tageler/
 	sudo -u www-data cp -r mod_tageler/* /var/www/joomla/modules/mod_tageler/
 
 uninstall:

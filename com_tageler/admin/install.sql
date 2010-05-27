@@ -94,3 +94,6 @@ VALUES ('loe', '', 'Liebe Grüsse vom Leitungsteam', 99);
 
 INSERT INTO `#__tagelerfelder` (einheit, titel, inhalt, idx)
 VALUES ('cora', '', 'Liebe Grüsse vom Leitungsteam', 99);
+
+INSERT INTO `#__tagelerfelder` (einheit, titel, inhalt, idx)
+VALUES ('all', 'Abteilungsinfos', 'Die Abteilung informiert...', 99);

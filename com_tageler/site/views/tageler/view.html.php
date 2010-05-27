@@ -22,14 +22,16 @@ class TagelerViewTageler extends JView
     function display($tpl = null)
     {
         // Daten laden
-        $einheit = JRequest::getWord('einheit');
-        $model = $this->getModel();
-        $tageler = $model->getTageler($einheit);
-        $felder = $model->getFelder($einheit);
+        $einheit  = JRequest::getWord('einheit');
+        $model    = $this->getModel();
+        $tageler  = $model->getTageler($einheit);
+        $felder   = $model->getFelder($einheit);
+        $abtInfos = $model->getAbtInfos();
 
         // Inhalt für das Template definieren
-        $this->assignRef( 'tageler', $tageler );
-        $this->assignRef( 'felder', $felder );
+        $this->assignRef('tageler', $tageler);
+        $this->assignRef('felder', $felder);
+        $this->assignRef('abtInfos', $abtInfos);
 
         // Breadcrumb anpassen
         global $mainframe;

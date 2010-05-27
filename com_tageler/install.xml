@@ -13,7 +13,6 @@
         <filename>index.html</filename>
         <filename>img/falkipfeilgruen.gif</filename>
         <filename>models/tageler.php</filename>
-        <filename>models/tagelerubersicht.php</filename>
         <filename>views/index.html</filename>
         <filename>views/tageler/index.html</filename>
         <filename>views/tageler/view.html.php</filename>
@@ -36,11 +35,20 @@
         </sql>
     </uninstall>	
     <administration>
-<!--         <menu>Tageler</menu> -->
+        <menu>Tageler</menu>
         <files folder="admin">
+            <filename>controller.php</filename>
             <filename>index.html</filename>
             <filename>install.sql</filename>
+            <filename>tageler.php</filename>
             <filename>uninstall.sql</filename>
+            <filename>models/index.html</filename>
+            <filename>models/tagelerubersicht.php</filename>
+            <filename>views/index.html</filename>
+            <filename>views/tagelerubersicht/index.html</filename>
+            <filename>views/tagelerubersicht/view.html.php</filename>
+            <filename>views/tagelerubersicht/tmpl/default.php</filename>
+            <filename>views/tagelerubersicht/tmpl/index.html</filename>
         </files>		
     </administration>
 </install>

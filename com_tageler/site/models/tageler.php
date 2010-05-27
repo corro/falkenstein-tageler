@@ -69,6 +69,25 @@ class TagelerModelTageler extends JModel
         return $felder;
     }
 
+    function getAbtInfos()
+    {
+        $app =& JFactory::getApplication();
+        $db =& JFactory::getDBO();
+
+        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
+                 'WHERE einheit = '.$db->quote('all').
+                 'ORDER BY '.$db->nameQuote('idx');
+
+        $db->setQuery( $query );
+        $abtInfos = $db->loadObjectList();
+
+        if (is_null($abtInfos))
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+        }
+        return $abtInfos;
+    }
+
     /**
      * Speichert den Tageler mit den Daten aus dem JRequest
      */

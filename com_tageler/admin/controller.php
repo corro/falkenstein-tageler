@@ -19,17 +19,12 @@ jimport('joomla.application.component.controller');
  */
 class TagelerController extends JController
 {
-    function __construct()
-    {
-        parent::__construct();
-        $this->addModelPath( JPATH_COMPONENT_ADMINISTRATOR .DS.'models' );
-    }
-
     /**
      * Standardansicht
      */
     function display()
     {
+        JRequest::setVar( 'view', 'tagelerubersicht' );
         parent::display();
     }
 

@@ -20,6 +20,8 @@ if($controller = JRequest::getVar('controller'))
 	require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
 }
 
+// JModel::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR .DS. 'models');
+
 // Editierfunktionen beschränken
 $auth =& JFactory::getACL();
 $auth->addACL('com_tageler', 'edit', 'users', 'super administrator');
