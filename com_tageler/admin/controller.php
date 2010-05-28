@@ -1,6 +1,6 @@
 <?php
 /**
- * Tageler Controller
+ * Tageler Controller für das Tageler Component
  * 
  * @package    Falkenstein.Joomla
  * @subpackage Components
@@ -12,7 +12,7 @@
 jimport('joomla.application.component.controller');
 
 /**
- * Controller für das Tageler Component
+ * Tageler Controller
  *
  * @package    Falkenstein.Joomla
  * @subpackage Components
@@ -24,7 +24,7 @@ class TagelerController extends JController
      */
     function display()
     {
-        JRequest::setVar( 'view', 'tagelerubersicht' );
+        JRequest::setVar( 'view', 'tagelers' );
         parent::display();
     }
 
@@ -33,7 +33,10 @@ class TagelerController extends JController
      */
     function edit()
     {
+        JRequest::setVar( 'view', 'tageler' );
         JRequest::setVar( 'layout', 'form' );
+        JRequest::setVar( 'hidemainmenu', 1 );
+
         parent::display();
     }
 
@@ -51,9 +54,7 @@ class TagelerController extends JController
         // Speichern der Informationen
         $model->store($post);
 
-        $einheit = JRequest::getWord('einheit');
-        $view = JRequest::getWord('view');
-        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
+        $this->setRedirect('index.php?option=com_tageler');
     }
 
     /**
@@ -72,7 +73,7 @@ class TagelerController extends JController
         // Zusatzfeld hinzufügen
         $model->addField($einheit);
 
-        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit.'&task=edit');
+        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&task=edit&cid[]='.$einheit);
     }
 
     /**
@@ -90,7 +91,7 @@ class TagelerController extends JController
         $model =& $this->getModel();
         $model->remField($fieldId);
 
-        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit.'&task=edit');
+        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&task=edit&cid[]='.$einheit);
     }
 
     /**
@@ -100,6 +101,6 @@ class TagelerController extends JController
     {
         $einheit = JRequest::getWord('einheit');
         $view = JRequest::getWord('view');
-        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
+        $this->setRedirect('index.php?option=com_tageler');
     }
 }

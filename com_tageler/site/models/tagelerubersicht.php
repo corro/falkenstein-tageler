@@ -23,18 +23,6 @@ jimport( 'joomla.application.component.model' );
  */
 class TagelerModelTagelerubersicht extends JModel
 {
-    function __construct()
-    {
-        parent::__construct();
-        global $mainframe, $option;
-
-        $filter_order     = $mainframe->getUserStateFromRequest(  $option.'filter_order', 'filter_order', 'einheit', 'cmd' );
-        $filter_order_Dir = $mainframe->getUserStateFromRequest( $option.'filter_order_Dir', 'filter_order_Dir', 'asc', 'word' );
-
-        $this->setState('filter_order', $filter_order);
-        $this->setState('filter_order_Dir', $filter_order_Dir);
-    }
-
     /**
      * Liefert die Tageler aller Einheiten
      * @return Tageler aller Einheiten
@@ -43,11 +31,7 @@ class TagelerModelTagelerubersicht extends JModel
     {
         $db =& JFactory::getDBO();
 
-        $filter_order     = $this->getState('filter_order');
-        $filter_order_Dir = $this->getState('filter_order_Dir');
-
-
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tageler').' ORDER BY '.$filter_order.' '.$filter_order_Dir;
+        $query = 'SELECT * FROM '.$db->nameQuote('#__tageler');
         $db->setQuery( $query );
         $allTageler = $db->loadObjectList();
 

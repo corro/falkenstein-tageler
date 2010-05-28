@@ -1,11 +1,12 @@
 <?php
 /**
- * Hellos View for Hello World Component
+ * Tagelerübersicht View für das Tageler Component
  * 
- * @package    Joomla.Tutorials
+ * @author     R. Baumgartner
+ * @package    Falkenstein.Joomla
  * @subpackage Components
- * @link http://docs.joomla.org/Developing_a_Model-View-Controller_Component_-_Part_4
- * @license        GNU/GPL
+ * @link       http://www.pfadi-falkenstein.ch
+ * @license    GNU/GPL
  */
  
 // Sicherheitscheck
@@ -14,17 +15,13 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.view' );
  
 /**
- * Hellos View
+ * Tagelerübersicht View
  *
- * @package    Joomla.Tutorials
+ * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerViewTagelerubersicht extends JView
+class TagelerViewTagelers extends JView
 {
-    /**
-     * Hellos view display method
-     * @return void
-     **/
     function display($tpl = null)
     {
         JToolBarHelper::title( JText::_( 'Tageler Manager' ), 'generic.png' );

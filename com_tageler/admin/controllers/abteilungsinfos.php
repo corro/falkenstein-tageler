@@ -1,6 +1,6 @@
 <?php
 /**
- * Tageler Controller
+ * Abteilungsinfos Controller für das Tageler Component
  * 
  * @package    Falkenstein.Joomla
  * @subpackage Components
@@ -12,27 +12,40 @@
 jimport('joomla.application.component.controller');
 
 /**
- * Controller für das Tageler Component
+ * Abteilungsinfos Controller
  *
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerController extends JController
+class TagelerControllerAbteilungsinfos extends JController
 {
+    function __construct()
+    {
+        parent::__construct();
+
+        // Zusätzliche Task registrieren
+        $this->registerTask( 'add', 'edit' );
+    }
+
     /**
      * Standardansicht
      */
     function display()
     {
+        JRequest::setVar( 'view', 'abteilungsinfos' );
         parent::display();
     }
 
     /**
-     * Editieransicht
+     * display the edit form
+     * @return void
      */
     function edit()
     {
-        JRequest::setVar( 'layout', 'form' );
+        JRequest::setVar( 'view', 'abteilungsinfo' );
+        JRequest::setVar( 'layout', 'form'  );
+        JRequest::setVar('hidemainmenu', 1);
+
         parent::display();
     }
 
@@ -50,9 +63,7 @@ class TagelerController extends JController
         // Speichern der Informationen
         $model->store($post);
 
-        $einheit = JRequest::getWord('einheit');
-        $view = JRequest::getWord('view');
-        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
+        $this->setRedirect('index.php?option=com_tageler&controller=abteilungsinfos');
     }
 
     /**
@@ -60,8 +71,6 @@ class TagelerController extends JController
      */
     function cancel()
     {
-        $einheit = JRequest::getWord('einheit');
-        $view = JRequest::getWord('view');
-        $this->setRedirect('index.php?option=com_tageler&view='.$view.'&einheit='.$einheit);
+        $this->setRedirect('index.php?option=com_tageler&controller=abteilungsinfos');
     }
 }

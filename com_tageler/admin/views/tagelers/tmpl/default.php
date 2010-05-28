@@ -5,35 +5,48 @@ function date_mysql2german($date)
     $d    =    explode('-',$date);
     return    sprintf('%02d.%02d.%04d', $d[2], $d[1], $d[0]);
 }
+JHTML::_('behavior.tooltip');
 ?>
-<form action="index.php" method="post" name="adminForm">
+<form action="index.php?option=com_tageler" method="post" name="adminForm">
 <div id="editcell">
     <table class="adminlist">
     <thead>
         <tr>
-            <th><?php echo JHTML::_( 'grid.sort', 'Einheit', 'einheit', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th width="20">
-                <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->tageler ); ?>);" />
-            </th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Name', 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+            <th width='15'>Einh.</th>
+            <th width='10'></th>
+            <!--<th><?php echo JHTML::_( 'grid.sort', 'Name', 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
             <th><?php echo JHTML::_( 'grid.sort', 'Datum', 'datum', $this->lists['order_Dir'], $this->lists['order']); ?></th>
             <th><?php echo JHTML::_( 'grid.sort', 'Titel', 'titel', $this->lists['order_Dir'], $this->lists['order']); ?></th>
             <th><?php echo JHTML::_( 'grid.sort', 'Beginn', 'beginn', $this->lists['order_Dir'], $this->lists['order']); ?></th>
             <th><?php echo JHTML::_( 'grid.sort', 'Schluss', 'schluss', $this->lists['order_Dir'], $this->lists['order']); ?></th>
             <th><?php echo JHTML::_( 'grid.sort', 'Mitbringen', 'mitbringen', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Tenue', 'tenue', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+            <th><?php echo JHTML::_( 'grid.sort', 'Tenue', 'tenue', $this->lists['order_Dir'], $this->lists['order']); ?></th>-->
+            <th>Name</th>
+            <th>Datum</th>
+            <th>Titel</th>
+            <th>Beginn</th>
+            <th>Schluss</th>
+            <th>Mitbringen</th>
+            <th>Tenue</th>
         </tr>
     </thead>
     <?php
     $i = 0;
+    $k = 0;
     foreach($this->tageler as $t)
     {
         $checked    = JHTML::_( 'grid.id', $i, $t->einheit );
     ?>
-        <tr>
+        <tr class='<?php echo 'row'.$k; ?>'>
             <td><?php echo $t->einheit; ?></td>
-            <td><?php echo $checked; ?></td>
-            <td><?php echo $t->name; ?></td>
+            <td><input type="radio" id="cb<?php echo $i;?>" name="cid[]" value="<?php echo $t->einheit; ?>" onclick="isChecked(this.checked);" /></td>
+            <td>
+                <span class='editlinktip hasTip' title='<?php echo JText::_( 'Edit' );?>::<?php echo $t->name; ?>'>
+                    <a href='index.php?option=com_tageler&task=edit&cid[]=<?php echo $t->einheit; ?>'>
+                        <?php echo $t->name; ?>
+                    </a>
+                </span>
+            </td>
             <td><?php echo date_mysql2german($t->datum); ?></td>
             <td><?php echo $t->titel; ?></td>
             <td><?php echo $t->beginn; ?></td>
@@ -42,6 +55,7 @@ function date_mysql2german($date)
             <td><?php echo $t->tenue; ?></td>
         </tr>
     <?php
+        $k = 1 - $k;
         $i += 1;
     } ?>
     </table>
@@ -53,5 +67,6 @@ function date_mysql2german($date)
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />
 <input type="hidden" name="controller" value="tageler" />
+<input type='hidden' name='view' value='tagelers' />
  
 </form>
