@@ -24,7 +24,7 @@ jimport( 'joomla.application.component.model' );
 class TagelerModelAbteilungsinfo extends JModel
 {
     /**
-     * Liefert die Abteilungsinfos (einheit=all)
+     * Liefert die Abteilungsinfo mit der entspr. Id
      * @return Abteilungsinfos
      */
     function getAbteilungsinfo($id)
@@ -44,6 +44,27 @@ class TagelerModelAbteilungsinfo extends JModel
         return $abtInfo;
     }
 
+    /**
+     * Liefert die Abteilungsinfos (einheit=all)
+     * @return Abteilungsinfos
+     */
+    function getAbteilungsinfos()
+    {
+        $db =& JFactory::getDBO();
+
+        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
+                 'WHERE '.$db->nameQuote('einheit').' = '.$db->quote('all');
+        $db->setQuery( $query );
+        $abtInfos = $db->loadObjectList();
+
+        if (is_null($abtInfos))
+        {
+            $app->enqueueMessage(nl2br($db->getErrorMsg()),'error');
+        }
+
+        return $abtInfos;
+    }
+
     function store($data)
     {
         $app =& JFactory::getApplication();
@@ -54,19 +75,10 @@ class TagelerModelAbteilungsinfo extends JModel
         $inhalt     = $db->quote($data['inhalt']);
         $idx        = $db->quote($data['idx']);
 
-        if ($data['id'] > 0)
-        {
-            $query = 'UPDATE '.$db->nameQuote('#__tagelerfelder').
-                    'SET '.$db->nameQuote('titel').'='.$titel.', '.$db->nameQuote('inhalt').'='.$inhalt.', '.
-                            $db->nameQuote('idx').'='.$idx.
-                    'WHERE '.$db->nameQuote('id').'='.$id;
-        }
-        else
-        {
-            $query = 'INSERT INTO '.$db->nameQuote('#__tagelerfelder').
-                     ' ('.$db->nameQuote('titel').', '.$db->nameQuote('inhalt').', '.$db->nameQuote('idx').')'.
-                     'VALUES ('.$titel.', '.$inhalt.', '.$idx.')';
-        }
+        $query = 'UPDATE '.$db->nameQuote('#__tagelerfelder').
+                 'SET '.$db->nameQuote('titel').'='.$titel.', '.$db->nameQuote('inhalt').'='.$inhalt.', '.
+                        $db->nameQuote('idx').'='.$idx.
+                 'WHERE '.$db->nameQuote('id').'='.$id;
 
         $db->setQuery($query);
         if (!$db->query())
