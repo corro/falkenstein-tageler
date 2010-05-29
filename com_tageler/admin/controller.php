@@ -17,14 +17,14 @@ jimport('joomla.application.component.controller');
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelersController extends JController
+class TagelerController extends JController
 {
     /**
      * Standardansicht
      */
     function display()
     {
-        JRequest::setVar( 'view', 'tageler' );
+        JRequest::setVar( 'view', 'tagelers' );
         parent::display();
     }
 

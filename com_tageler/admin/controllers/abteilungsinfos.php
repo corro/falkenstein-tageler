@@ -17,7 +17,7 @@ jimport('joomla.application.component.controller');
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerControllerAbteilungsinfo extends JController
+class TagelerControllerAbteilungsinfos extends JController
 {
     function __construct()
     {
@@ -32,7 +32,7 @@ class TagelerControllerAbteilungsinfo extends JController
      */
     function display()
     {
-        JRequest::setVar( 'view', 'abteilungsinfo' );
+        JRequest::setVar( 'view', 'abteilungsinfos' );
         parent::display();
     }
 
@@ -63,7 +63,7 @@ class TagelerControllerAbteilungsinfo extends JController
         // Speichern der Informationen
         $model->store($post);
 
-        $this->setRedirect('index.php?option=com_tageler&controller=abteilungsinfo');
+        $this->setRedirect('index.php?option=com_tageler&controller=abteilungsinfos');
     }
 
     /**
@@ -71,6 +71,6 @@ class TagelerControllerAbteilungsinfo extends JController
      */
     function cancel()
     {
-        $this->setRedirect('index.php?option=com_tageler&controller=abteilungsinfo');
+        $this->setRedirect('index.php?option=com_tageler&controller=abteilungsinfos');
     }
 }

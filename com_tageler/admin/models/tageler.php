@@ -47,27 +47,6 @@ class TagelerModelTageler extends JModel
     }
 
     /**
-     * Liefert die Tageler aller Einheiten
-     * @return Tageler aller Einheiten
-     */
-    function getTagelers()
-    {
-        $app =& JFactory::getApplication();
-        $db =& JFactory::getDBO();
-
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tageler');
-        $db->setQuery( $query );
-        $allTageler = $db->loadObjectList();
-
-        if (is_null($allTageler))
-        {
-            $app->enqueueMessage(nl2br($db->getErrorMsg()),'error');
-        }
-
-        return $allTageler;
-    }
-
-    /**
      * Liefert die Zusatzfelder des Tagelers der Einheit
      * @return Zusatzfelder für den Tageler der Einheit
      */

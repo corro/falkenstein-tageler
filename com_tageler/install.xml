@@ -37,7 +37,7 @@
     <administration>
         <menu>Tageler</menu>
         <submenu>
-            <menu img='none' controller='tageler'>Tageler</menu>
+            <menu img='none'>Tageler</menu>
             <menu img='none' controller='abteilungsinfos'>Abteilungsinfos</menu>
         </submenu>
         <files folder="admin">
@@ -48,10 +48,16 @@
             <filename>uninstall.sql</filename>
             <filename>controllers/abteilungsinfos.php</filename>
             <filename>controllers/index.html</filename>
+            <filename>models/abteilungsinfo.php</filename>
             <filename>models/abteilungsinfos.php</filename>
             <filename>models/index.html</filename>
             <filename>models/tageler.php</filename>
+            <filename>models/tagelers.php</filename>
             <filename>views/index.html</filename>
+            <filename>views/abteilungsinfo/index.html</filename>
+            <filename>views/abteilungsinfo/view.html.php</filename>
+            <filename>views/abteilungsinfo/tmpl/form.php</filename>
+            <filename>views/abteilungsinfo/tmpl/index.html</filename>
             <filename>views/abteilungsinfos/index.html</filename>
             <filename>views/abteilungsinfos/view.html.php</filename>
             <filename>views/abteilungsinfos/tmpl/default.php</filename>
@@ -59,8 +65,11 @@
             <filename>views/tageler/index.html</filename>
             <filename>views/tageler/view.html.php</filename>
             <filename>views/tageler/tmpl/index.html</filename>
-            <filename>views/tageler/tmpl/default.php</filename>
             <filename>views/tageler/tmpl/form.php</filename>
+            <filename>views/tagelers/index.html</filename>
+            <filename>views/tagelers/view.html.php</filename>
+            <filename>views/tagelers/tmpl/index.html</filename>
+            <filename>views/tagelers/tmpl/default.php</filename>
         </files>		
     </administration>
 </install>
