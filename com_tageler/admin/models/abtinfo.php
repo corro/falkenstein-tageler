@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerModelAbteilungsinfos extends JModel
+class AbtInfoModelAbtInfo extends JModel
 {
     function __construct()
     {
@@ -48,8 +48,8 @@ class TagelerModelAbteilungsinfos extends JModel
 //         $filter_order_Dir = $this->getState('filter_order_Dir');
 
 
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
-                 'WHERE '.$db->nameQuote('einheit').' = '.$db->quote('all'); //.
+        $query = 'SELECT * FROM #__tagelerfelder '.
+                 'WHERE einheit = '.$db->quote('all'); //.
                  //'ORDER BY '.$filter_order.' '.$filter_order_Dir;
         $db->setQuery( $query );
         $abtInfos = $db->loadObjectList();

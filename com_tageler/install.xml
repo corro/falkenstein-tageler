@@ -38,38 +38,40 @@
         <menu>Tageler</menu>
         <submenu>
             <menu img='none'>Tageler</menu>
-            <menu img='none' controller='abteilungsinfos'>Abteilungsinfos</menu>
+            <menu img='none' controller='abtinfo'>Abteilungsinfos</menu>
         </submenu>
         <files folder="admin">
-            <filename>controller.php</filename>
             <filename>index.html</filename>
             <filename>install.sql</filename>
             <filename>tageler.php</filename>
             <filename>uninstall.sql</filename>
-            <filename>controllers/abteilungsinfos.php</filename>
+            <filename>controllers/abtinfo.php</filename>
+            <filename>controllers/abtinfo_detail.php</filename>
             <filename>controllers/index.html</filename>
-            <filename>models/abteilungsinfo.php</filename>
-            <filename>models/abteilungsinfos.php</filename>
+            <filename>controllers/tageler.php</filename>
+            <filename>controllers/tageler_detail.php</filename>
+            <filename>models/abtinfo.php</filename>
+            <filename>models/abtinfo_detail.php</filename>
             <filename>models/index.html</filename>
             <filename>models/tageler.php</filename>
-            <filename>models/tagelers.php</filename>
+            <filename>models/tageler_detail.php</filename>
             <filename>views/index.html</filename>
-            <filename>views/abteilungsinfo/index.html</filename>
-            <filename>views/abteilungsinfo/view.html.php</filename>
-            <filename>views/abteilungsinfo/tmpl/form.php</filename>
-            <filename>views/abteilungsinfo/tmpl/index.html</filename>
-            <filename>views/abteilungsinfos/index.html</filename>
-            <filename>views/abteilungsinfos/view.html.php</filename>
-            <filename>views/abteilungsinfos/tmpl/default.php</filename>
-            <filename>views/abteilungsinfos/tmpl/index.html</filename>
+            <filename>views/abtinfo/index.html</filename>
+            <filename>views/abtinfo/view.html.php</filename>
+            <filename>views/abtinfo/tmpl/default.php</filename>
+            <filename>views/abtinfo/tmpl/index.html</filename>
+            <filename>views/abtinfo_detail/index.html</filename>
+            <filename>views/abtinfo_detail/view.html.php</filename>
+            <filename>views/abtinfo_detail/tmpl/form.php</filename>
+            <filename>views/abtinfo_detail/tmpl/index.html</filename>
             <filename>views/tageler/index.html</filename>
             <filename>views/tageler/view.html.php</filename>
             <filename>views/tageler/tmpl/index.html</filename>
-            <filename>views/tageler/tmpl/form.php</filename>
-            <filename>views/tagelers/index.html</filename>
-            <filename>views/tagelers/view.html.php</filename>
-            <filename>views/tagelers/tmpl/index.html</filename>
-            <filename>views/tagelers/tmpl/default.php</filename>
+            <filename>views/tageler/tmpl/default.php</filename>
+            <filename>views/tageler_detail/index.html</filename>
+            <filename>views/tageler_detail/view.html.php</filename>
+            <filename>views/tageler_detail/tmpl/index.html</filename>
+            <filename>views/tageler_detail/tmpl/form.php</filename>
         </files>		
     </administration>
 </install>

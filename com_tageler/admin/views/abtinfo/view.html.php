@@ -1,6 +1,6 @@
 <?php
 /**
- * Tagelerübersicht View für das Tageler Component
+ * Abteilungsinfos View für das Tageler Component
  * 
  * @author     R. Baumgartner
  * @package    Falkenstein.Joomla
@@ -15,31 +15,33 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.view' );
  
 /**
- * Tagelerübersicht View
+ * Abteilungsinfos View
  *
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerViewTagelers extends JView
+class AbtInfoViewAbtInfo extends JView
 {
     function display($tpl = null)
     {
-        JToolBarHelper::title( JText::_( 'Tageler Manager' ), 'generic.png' );
+        JToolBarHelper::title( JText::_( 'Abteilungsinfos Manager' ), 'generic.png' );
+        JToolBarHelper::deleteList();
         JToolBarHelper::editListX();
+        JToolBarHelper::addNewX();
 
         // Get data from the model
         $model =& $this->getModel();
-        $tageler = $model->getTageler();
+        $abtInfos = $model->getAbteilungsinfos();
 
         /* Call the state object */
-        $state =& $this->get( 'state' );
+//         $state =& $this->get( 'state' );
 
         /* Get the values from the state object that were inserted in the model's construct function */
-        $lists['order_Dir'] = $state->get( 'filter_order_Dir' );
-        $lists['order']     = $state->get( 'filter_order' );
+//         $lists['order_Dir'] = $state->get( 'filter_order_Dir' );
+//         $lists['order']     = $state->get( 'filter_order' );
 
-        $this->assignRef( 'lists', $lists );
-        $this->assignRef( 'tageler', $tageler );
+//         $this->assignRef( 'lists', $lists );
+        $this->assignRef( 'abtInfos', $abtInfos );
 
         parent::display($tpl);
     }

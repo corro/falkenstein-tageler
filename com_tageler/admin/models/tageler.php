@@ -23,162 +23,40 @@ jimport( 'joomla.application.component.model' );
  */
 class TagelerModelTageler extends JModel
 {
+    function __construct()
+    {
+        parent::__construct();
+//         global $mainframe, $option;
+// 
+//         $filter_order     = $mainframe->getUserStateFromRequest(  $option.'filter_order', 'filter_order', 'einheit', 'cmd' );
+//         $filter_order_Dir = $mainframe->getUserStateFromRequest( $option.'filter_order_Dir', 'filter_order_Dir', 'asc', 'word' );
+// 
+//         $this->setState('filter_order', $filter_order);
+//         $this->setState('filter_order_Dir', $filter_order_Dir);
+    }
+
     /**
-     * Liefert den aktuellen Tageler für die Einheit
-     * @return Tageler für die Einheit
+     * Liefert die Tageler aller Einheiten
+     * @return Tageler aller Einheiten
      */
-    function getTageler($einheit)
+    function getTageler()
     {
         $app =& JFactory::getApplication();
-        $db  =& JFactory::getDBO();
+        $db =& JFactory::getDBO();
 
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tageler').
-                 'WHERE einheit = '.$db->quote($einheit);
+//         $state =& $this->get( 'state' );
+//         $filter_order     = $this->getState('filter_order');
+//         $filter_order_Dir = $this->getState('filter_order_Dir');
 
-        $db->setQuery($query);
-        $tageler = $db->loadObject();
+        $query = 'SELECT * FROM #__tageler'; //.' ORDER BY '.$filter_order.' '.$filter_order_Dir;
+        $db->setQuery( $query );
+        $allTageler = $db->loadObjectList();
 
-        if (is_null($tageler))
+        if (is_null($allTageler))
         {
             $app->enqueueMessage(nl2br($db->getErrorMsg()),'error');
         }
 
-        return $tageler;
-    }
-
-    /**
-     * Liefert die Zusatzfelder des Tagelers der Einheit
-     * @return Zusatzfelder für den Tageler der Einheit
-     */
-    function getFelder($einheit)
-    {
-        $app =& JFactory::getApplication();
-        $db =& JFactory::getDBO();
-
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
-                 'WHERE einheit = '.$db->quote($einheit).
-                 'ORDER BY '.$db->nameQuote('idx');
-
-        $db->setQuery( $query );
-        $felder = $db->loadObjectList();
-
-        if (is_null($felder))
-        {
-            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
-        }
-        return $felder;
-    }
-
-    function getAbtInfos()
-    {
-        $app =& JFactory::getApplication();
-        $db =& JFactory::getDBO();
-
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
-                 'WHERE einheit = '.$db->quote('all').
-                 'ORDER BY '.$db->nameQuote('idx');
-
-        $db->setQuery( $query );
-        $abtInfos = $db->loadObjectList();
-
-        if (is_null($abtInfos))
-        {
-            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
-        }
-        return $abtInfos;
-    }
-
-    /**
-     * Speichert den Tageler mit den Daten aus dem JRequest
-     */
-    function store($data)
-    {
-        $app =& JFactory::getApplication();
-        $db  =& JFactory::getDBO();
-
-        $d          = explode('.', $data['datum']);
-        $datum      = $db->quote(sprintf("%04d-%02d-%02d", $d[2], $d[1], $d[0]));
-        $titel      = $db->quote($data['titel']);
-        $beginn     = $db->quote($data['beginn']);
-        $schluss    = $db->quote($data['schluss']);
-        $mitbringen = $db->quote($data['mitbringen']);
-        $tenue      = $db->quote($data['tenue']);
-        $einheit    = $db->quote($data['einheit']);
-
-        $query = 'UPDATE '.$db->nameQuote('#__tageler').
-                 'SET '.$db->nameQuote('datum').'='.$datum.', '.$db->nameQuote('titel').'='.$titel.', '.
-                        $db->nameQuote('beginn').'='.$beginn.', '.$db->nameQuote('schluss').'='.$schluss.', '.
-                        $db->nameQuote('mitbringen').'='.$mitbringen.', '.$db->nameQuote('tenue').'='.$tenue.
-                 'WHERE '.$db->nameQuote('einheit').'='.$einheit;
-
-        $db->setQuery($query);
-        if (!$db->query())
-        {
-            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
-        }
-
-        $felder = TagelerModelTageler::getFelder($data['einheit']);
-        foreach ($felder as $feld)
-        {
-            $titelname = 'titel_'.$feld->id;
-            $inhaltname = 'inhalt_'.$feld->id;
-            $indexname= 'index_'.$feld->id;
-
-            $titel = $db->quote($data[$titelname]);
-            $inhalt = $db->quote($data[$inhaltname]);
-            $index = $db->quote($data[$indexname]);
-            $id = $db->quote($feld->id);
-
-            $query = 'UPDATE '.$db->nameQuote('#__tagelerfelder').
-                     'SET '.$db->nameQuote('titel').'='.$titel.', '.$db->nameQuote('inhalt').'='.$inhalt.', '.
-                            $db->nameQuote('idx').'='.$index.
-                     'WHERE '.$db->nameQuote('id').'='.$id;
-
-            $db->setQuery($query);
-            if (!$db->query())
-            {
-                $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
-            }
-        }
-    }
-
-    /**
-     * Fügt dem Tageler der Einheit ein Zusatzfeld hinzu
-     */
-    function addField($einheit)
-    {
-        $app =& JFactory::getApplication();
-        $db  =& JFactory::getDBO();
-
-        $einheit = $db->quote($einheit);
-        $titel   = $db->quote('Titel');
-        $inhalt  = $db->quote('Inhalt');
-
-        $query = 'INSERT INTO '.$db->nameQuote('#__tagelerfelder').
-                            '('.$db->nameQuote('einheit').', '.$db->nameQuote('titel').', '.$db->nameQuote('inhalt').')'.
-                 'VALUES ('.$einheit.', '.$titel.', '.$inhalt.')';
-
-        $db->setQuery($query);
-        if (!$db->query())
-        {
-            $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
-        }
-    }
-
-    /**
-     * Entfernt das Zusatzfeld mit der angegebenen Id
-     */
-    function remField($fieldId)
-    {
-        $app =& JFactory::getApplication();
-        $db  =& JFactory::getDBO();
-
-        $query = 'DELETE FROM '.$db->nameQuote('#__tagelerfelder').
-                 'WHERE '.$db->nameQuote('id').'='.$db->quote($fieldId);
-
-        $db->setQuery( $query );
-        $db->query();
-
-        return $db->getErrorMsg();
+        return $allTageler;
     }
 }

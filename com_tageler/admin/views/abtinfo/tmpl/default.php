@@ -2,6 +2,25 @@
 
 JHTML::_('behavior.tooltip');
 ?>
+<script language="javascript" type="text/javascript">
+
+function submitform(pressbutton){
+var form = document.adminForm;
+   if (pressbutton)
+    {form.task.value=pressbutton;}
+    
+    if (pressbutton=='edit')
+     {
+      form.controller.value="abtinfo_detail";
+     }
+    try {
+        form.onsubmit();
+        }
+    catch(e){}
+    
+    form.submit();
+}
+</script>
 
 <form action="index.php?option=com_tageler" method="post" name="adminForm">
 <div id="editcell">
@@ -25,14 +44,14 @@ JHTML::_('behavior.tooltip');
     $k = 0;
     foreach($this->abtInfos as $a)
     {
-        $checked = JHTML::_( 'grid.id', $i, $a->einheit );
+        $checked = JHTML::_( 'grid.id', $i, $a->id );
     ?>
         <tr class='<?php echo 'row'.$k; ?>'>
             <td><?php echo $a->id; ?></td>
             <td><?php echo $checked; ?></td>
             <td>
-                <span class='editlinktip hasTip' title='<?php echo JText::_( 'Edit' );?>::<?php echo $a->titel; ?>'>
-                    <a href='index.php?option=com_tageler&controller=abteilungsinfos&task=edit&cid[]=<?php echo $a->id; ?>'>
+                <span class='editlinktip hasTip' title='Edit::<?php echo $a->titel; ?>'>
+                    <a href='index.php?option=com_tageler&controller=abtinfo_detail&task=edit&cid[]=<?php echo $a->id; ?>'>
                         <?php echo $a->titel; ?>
                     </a>
                 </span>
@@ -47,11 +66,11 @@ JHTML::_('behavior.tooltip');
     </table>
 </div>
 
-<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
-<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
+<!--<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
+<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />-->
 <input type="hidden" name="option" value="com_tageler" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />
-<input type="hidden" name="controller" value="tageler" />
+<input type="hidden" name="controller" value="abtinfo" />
  
 </form>

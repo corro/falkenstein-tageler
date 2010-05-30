@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerModelAbteilungsinfo extends JModel
+class AbtInfo_DetailModelAbtInfo_Detail extends JModel
 {
     /**
      * Liefert die Abteilungsinfos (einheit=all)
@@ -31,8 +31,8 @@ class TagelerModelAbteilungsinfo extends JModel
     {
         $db =& JFactory::getDBO();
 
-        $query = 'SELECT * FROM '.$db->nameQuote('#__tagelerfelder').
-                 'WHERE '.$db->nameQuote('id').' = '.$db->quote($id);
+        $query = 'SELECT * FROM #__tagelerfelder'.
+                 ' WHERE id = '.$db->quote($id);
         $db->setQuery( $query );
         $abtInfo = $db->loadObject();
 
@@ -54,24 +54,16 @@ class TagelerModelAbteilungsinfo extends JModel
         $inhalt     = $db->quote($data['inhalt']);
         $idx        = $db->quote($data['idx']);
 
-        if ($data['id'] > 0)
-        {
-            $query = 'UPDATE '.$db->nameQuote('#__tagelerfelder').
-                    'SET '.$db->nameQuote('titel').'='.$titel.', '.$db->nameQuote('inhalt').'='.$inhalt.', '.
-                            $db->nameQuote('idx').'='.$idx.
-                    'WHERE '.$db->nameQuote('id').'='.$id;
-        }
-        else
-        {
-            $query = 'INSERT INTO '.$db->nameQuote('#__tagelerfelder').
-                     ' ('.$db->nameQuote('titel').', '.$db->nameQuote('inhalt').', '.$db->nameQuote('idx').')'.
-                     'VALUES ('.$titel.', '.$inhalt.', '.$idx.')';
-        }
+        $query = 'UPDATE #__tagelerfelder'.
+                 ' SET titel = '.$titel.', inhalt = '.$inhalt.', idx = '.$idx.
+                 ' WHERE id = '.$id;
 
         $db->setQuery($query);
         if (!$db->query())
         {
             $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+            return false;
         }
+        return true;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Abteilungsinfo View für das Tageler Component
+ * Tagelerübersicht-Detail View für das Tageler Component
  * 
  * @author     R. Baumgartner
  * @package    Falkenstein.Joomla
@@ -8,33 +8,37 @@
  * @link       http://www.pfadi-falkenstein.ch
  * @license    GNU/GPL
  */
- 
+
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
- 
+
 jimport( 'joomla.application.component.view' );
- 
+
 /**
- * Abteilungsinfo View
+ * Tagelerübersicht-Detail View
  *
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerViewAbteilungsinfo extends JView
+class Tageler_DetailViewTageler_Detail extends JView
 {
     function display($tpl = null)
     {
-        JToolBarHelper::title( 'Abteilungsinfo: <small><small>[ Editieren ]</small></small>' );
+        JToolBarHelper::title( 'Tageler: <small><small>[ Editieren ]</small></small>' );
+        JToolBarHelper::custom( 'addField', 'new', '', 'Feld hinzufügen', false, false );
         JToolBarHelper::save();
         JToolBarHelper::cancel( 'cancel', 'Close' );
 
         $array = JRequest::getVar('cid',  0, '', 'array');
-        $id = (int)$array[0];
+        $einheit = $array[0];
 
         // Get data from the model
-        $model =& $this->getModel();
+        $model   = $this->getModel();
+        $tageler = $model->getTageler($einheit);
+        $felder  = $model->getFelder($einheit);
 
-        $this->assignRef( 'abtInfo', $abtInfo );
+        $this->assignRef( 'tageler', $tageler );
+        $this->assignRef( 'felder', $felder );
 
         parent::display($tpl);
     }

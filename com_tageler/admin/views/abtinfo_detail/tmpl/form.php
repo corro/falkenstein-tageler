@@ -55,8 +55,7 @@ textarea.input {
     <input type='hidden' name='id' value='<?php echo $this->abtInfo->id; ?>' />
     <input type="hidden" name="option" value="com_tageler" />
     <input type="hidden" name="task" value="save" />
-    <input type="hidden" name="controller" value="abteilungsinfos" />
-    <input type="hidden" name="view" value="abteilungsinfos" />
+    <input type="hidden" name="controller" value="abtinfo_detail" />
     <?php echo JHTML::_( 'form.token' ); ?>
     </fieldset>
 </form>
