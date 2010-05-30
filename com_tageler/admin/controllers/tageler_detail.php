@@ -85,7 +85,7 @@ class Tageler_DetailController extends JController
             $msg = 'Fehler beim Hinzufügen des Feldes';
         }
 
-        $this->setRedirect('index.php?option=com_tageler&controller=tageler_detail', $msg);
+        $this->setRedirect('index.php?option=com_tageler&controller=tageler_detail&task=edit&cid[]='.$einheit, $msg);
     }
 
     /**
@@ -96,16 +96,17 @@ class Tageler_DetailController extends JController
         // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
         JRequest::checkToken() or jexit('Invalid Token');
 
+        $einheit = JRequest::getWord('einheit');
         $fieldId = JRequest::getInt('fieldId');
-
         $model = $this->getModel();
+
         if ($model->remField($fieldId)) {
             $msg = 'Feld entfernt';
         } else {
             $msg = 'Fehler beim Entfernen des Feldes';
         }
 
-        $this->setRedirect('index.php?option=com_tageler&controller=tageler_detail', $msg);
+        $this->setRedirect('index.php?option=com_tageler&controller=tageler_detail&task=edit&cid[]='.$einheit, $msg);
     }
 
     /**
