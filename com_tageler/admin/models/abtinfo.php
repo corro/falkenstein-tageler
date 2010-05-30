@@ -49,7 +49,8 @@ class AbtInfoModelAbtInfo extends JModel
 
 
         $query = 'SELECT * FROM #__tagelerfelder '.
-                 'WHERE einheit = '.$db->quote('all'); //.
+                 'WHERE einheit = '.$db->quote('all').
+                 'ORDER BY idx'; //.
                  //'ORDER BY '.$filter_order.' '.$filter_order_Dir;
         $db->setQuery( $query );
         $abtInfos = $db->loadObjectList();

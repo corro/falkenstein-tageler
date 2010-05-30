@@ -9,7 +9,7 @@ var form = document.adminForm;
    if (pressbutton)
     {form.task.value=pressbutton;}
     
-    if (pressbutton=='edit')
+    if ((pressbutton=='edit')||(pressbutton=='add')||(pressbutton=='remove'))
      {
       form.controller.value="abtinfo_detail";
      }

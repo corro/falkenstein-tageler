@@ -24,18 +24,26 @@ class AbtInfo_DetailViewAbtInfo_Detail extends JView
 {
     function display($tpl = null)
     {
-        JToolBarHelper::title( 'Abteilungsinfo: <small><small>[ Editieren ]</small></small>' );
-        JToolBarHelper::save();
-        JToolBarHelper::cancel( 'cancel', 'Close' );
-
         $array = JRequest::getVar('cid',  0, '', 'array');
         $id = (int)$array[0];
 
-        // Get data from the model
-        $model   = $this->getModel();
-        $abtInfo = $model->getAbteilungsinfo($id);
+        JToolBarHelper::save();
+        if ($id)
+        {
+            JToolBarHelper::title( 'Abteilungsinfo: <small><small>[ Editieren ]</small></small>' );
+            JToolBarHelper::cancel( 'cancel', 'Close' );
 
-        $this->assignRef( 'abtInfo', $abtInfo );
+            // Get data from the model
+            $model   = $this->getModel();
+            $abtInfo = $model->getAbteilungsinfo($id);
+
+            $this->assignRef( 'abtInfo', $abtInfo );
+        }
+        else
+        {
+            JToolBarHelper::title( 'Abteilungsinfo: <small><small>[ Erfassen ]</small></small>' );
+            JToolBarHelper::cancel();
+        }
 
         parent::display($tpl);
     }

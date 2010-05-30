@@ -54,9 +54,14 @@ class AbtInfo_DetailModelAbtInfo_Detail extends JModel
         $inhalt     = $db->quote($data['inhalt']);
         $idx        = $db->quote($data['idx']);
 
-        $query = 'UPDATE #__tagelerfelder'.
-                 ' SET titel = '.$titel.', inhalt = '.$inhalt.', idx = '.$idx.
-                 ' WHERE id = '.$id;
+        if ($data['id']) {
+            $query = 'UPDATE #__tagelerfelder
+                      SET titel = '.$titel.', inhalt = '.$inhalt.', idx = '.$idx.
+                     ' WHERE id = '.$id;
+        } else {
+            $query = 'INSERT INTO #__tagelerfelder (einheit, titel, inhalt, idx)
+                      VALUES (\'all\', '.$titel.', '.$inhalt.', '.$idx.')';
+        }
 
         $db->setQuery($query);
         if (!$db->query())
@@ -65,5 +70,26 @@ class AbtInfo_DetailModelAbtInfo_Detail extends JModel
             return false;
         }
         return true;
+    }
+
+    function delete($cid = array())
+    {
+        $app =& JFactory::getApplication();
+        $db  =& JFactory::getDBO();
+
+        if (count( $cid ))
+        {
+            $cids = implode( ',', $cid );
+            $query = 'DELETE FROM #__tagelerfelder WHERE id IN ( '.$cids.' )';
+            $db->setQuery( $query );
+            if(!$db->query()) {
+                $app->enqueueMessage(nl2br($db->getErrorMsg()), 'error');
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

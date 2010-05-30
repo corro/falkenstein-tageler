@@ -68,11 +68,25 @@ class AbtInfo_DetailController extends JController
         $this->setRedirect('index.php?option=com_tageler&controller=abtinfo', $msg);
     }
 
+    function remove()
+    {
+        $cid = JRequest::getVar( 'cid', array(0), 'post', 'array' );
+
+        $model = $this->getModel();
+        if ($model->delete($cid)) {
+            $msg = 'Abteilungsinfo erfolgreich entfernt';
+        } else {
+            $msg = 'Fehler beim Entfernen der Abteilungsinfo';
+        }
+
+        $this->setRedirect( 'index.php?option=com_tageler&controller=abtinfo', $msg);
+    }
+
     /**
     * Abbruch
     */
     function cancel()
     {
-        $this->setRedirect( 'index.php?option=com_tageler&controller=abtinfo',$msg );
+        $this->setRedirect( 'index.php?option=com_tageler&controller=abtinfo', $msg);
     }
 }
