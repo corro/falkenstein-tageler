@@ -106,9 +106,9 @@ textarea.input {
 
 	<input type="hidden" name="option" value="com_tageler" />
 	<input type="hidden" name="task" value="save" />
-	<input type="hidden" name="controller" value="" />
+	<input type="hidden" name="controller" value="tageler_detail" />
 	<input type="hidden" name="einheit" value="<?php echo $this->tageler->einheit; ?>" />
-	<input type="hidden" name="view" value="tageler" />
+<!-- 	<input type="hidden" name="view" value="tageler" /> -->
     <input type="hidden" name="fieldId" id='fieldId' value="" />
 	<?php echo JHTML::_( 'form.token' ); ?>
 

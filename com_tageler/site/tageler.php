@@ -11,16 +11,9 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
-// Basiscontroller importieren
-require_once (JPATH_COMPONENT.DS.'controller.php');
+$controller = JRequest::getVar('controller','tageler');
 
-// Import eines spezifischen Controllers wenn nötig
-if($controller = JRequest::getVar('controller'))
-{
-	require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
-}
-
-// JModel::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR .DS. 'models');
+require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
 
 // Editierfunktionen beschränken
 $auth =& JFactory::getACL();
@@ -29,7 +22,8 @@ $auth->addACL('com_tageler', 'edit', 'users', 'administrator');
 $auth->addACL('com_tageler', 'edit', 'users', 'author');
 
 // Controller instanzieren
-$classname	= 'TagelerController'.$controller;
+// $classname	= 'TagelerController'.$controller;
+$classname  = $controller.'controller';
 $controller = new $classname();
 
 // Request bearbeiten
