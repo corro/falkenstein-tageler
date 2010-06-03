@@ -100,6 +100,14 @@ textarea.input {
                     <textarea class='input' name='tenue' id='tenue'><?php echo $this->tageler->tenue; ?></textarea>
                 </td>
             </tr>
+            <tr>
+                <td class='key' style='vertical-align:top'>
+                    <label for='image_path'>Bild:</label>
+                </td>
+                <td>
+                    <input class='input' type='text' name='image_path' id='image_path' value='<?php echo $this->tageler->image_path; ?>' />
+                </td>
+            </tr>
             <?php
             foreach($this->felder as $feld)
             {

@@ -10,6 +10,7 @@ CREATE TABLE `#__tageler` (
   `schluss` varchar(50) NULL,
   `mitbringen` text NULL,
   `tenue` text NULL,
+  `image_path` varchar(50) NULL,
   PRIMARY KEY  (`einheit`)
 );
 

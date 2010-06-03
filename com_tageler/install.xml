@@ -5,7 +5,7 @@
     <author>R. Baumgartner</author>
     <authorEmail>robin@baumgartners.ch</authorEmail>
     <license>GNU/GPL</license>
-    <version>1.2</version>
+    <version>1.3</version>
     <description>Tageler Component für das Anzeigen und Bearbeiten der Tageler</description>
     <files folder="site">
         <filename>tageler.php</filename>
@@ -34,11 +34,11 @@
         <sql>
             <file charset="utf8" driver="mysql">uninstall.sql</file>
         </sql>
-    </uninstall>	
+    </uninstall>
     <administration>
         <menu>Tageler</menu>
         <submenu>
-            <menu img='none'>Tageler</menu>
+            <menu img='none' controller='tageler'>Tageler</menu>
             <menu img='none' controller='abtinfo'>Abteilungsinfos</menu>
         </submenu>
         <files folder="admin">

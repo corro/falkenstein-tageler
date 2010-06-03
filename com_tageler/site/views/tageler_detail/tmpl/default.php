@@ -13,6 +13,17 @@ function ball2img($str)
     return str_replace('*', "<img src='components/com_tageler/img/falkipfeilgruen.gif' />", $str);
 }
 
+function replace_special($text)
+{
+    $text = eregi_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_\+.~#?&//=]+)', '<a href="\\1">\\1</a>', $text);
+    $text = eregi_replace('([[:space:]()[{}])(www.[-a-zA-Z0-9@:%_\+.~#?&//=]+)', '\\1<a href="http://\\2">\\2</a>', $text);
+    $text = eregi_replace('([_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3})', '<a href="mailto:\\1">\\1</a>', $text);
+    $text = ball2img($text);
+    $text = nl2br($text);
+
+    return $text;
+}
+
 function getEditButton($tageler)
 {
     $user =& JFactory::getUser();
@@ -36,20 +47,33 @@ if ($this->tageler->datum >= date('Y-m-d'))
             padding-bottom:10px;
             vertical-align:top;
         }
+        table {
+            border-style:none;
+            border-collapse:collapse;
+        }
+        .imagecontainer {
+            width:170px;
+            float:right;
+/*             background-color:red; */
+            background-image: url(<?php echo $this->tageler->image_path; ?>);
+            background-repeat: no-repeat;
+            height:170px;
+        }
     </style>
 
-    <div class='componentheading'>
-        Tageler für <?php echo $this->tageler->name; ?> am <?php echo date_mysql2german($this->tageler->datum); ?>
-         <?php echo getEditButton($this->tageler); ?>
+    <div class='componentheading' style='border-bottom:1px solid black'>
+        <div style='float:right;margin-right:23px'>
+            <div style='font-size:10px'>Aktivität vom:</div>
+            <?php echo date_mysql2german($this->tageler->datum); ?>
+        </div>
+        Tageler für <?php echo $this->tageler->name; ?>
+         <?php echo getEditButton($this->tageler); ?><br />
+        <?php echo $this->tageler->titel; ?>
     </div>
-    <table class='contentpaneopen'  style='padding-bottom:10px;'>
-        <tr>
-            <td class='contentheading'>
-                <?php echo $this->tageler->titel; ?>
-            </td>
-        </tr>
-    </table>
-    <table class='contentpaneopen'>
+    <div class='imagecontainer'>
+        
+    </div>
+    <table class='contentpaneopen' style='width:370px'>
         <tr>
             <td class='label'>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
         </tr>
@@ -67,10 +91,10 @@ if ($this->tageler->datum >= date('Y-m-d'))
             {
                 echo "<tr>";
                 if ($feld->titel) {
-                    echo "<td style='vertical-align:top'>".$feld->titel.":</td><td>".ball2img(nl2br($feld->inhalt))."</td>";
+                    echo "<td style='vertical-align:top'>".$feld->titel.":</td><td>".replace_special($feld->inhalt)."</td>";
                 }
                 else {
-                    echo "<td></td><td>".ball2img(nl2br($feld->inhalt))."</td>";
+                    echo "<td></td><td>".replace_special($feld->inhalt)."</td>";
                 }
                 echo "</tr>";
             }
@@ -83,10 +107,10 @@ if ($this->tageler->datum >= date('Y-m-d'))
                 {
                     echo "<tr style='background:#fff99d'>";
                     if ($info->titel) {
-                        echo "<td style='vertical-align:top'>".$info->titel.":</td><td>".ball2img(nl2br($info->inhalt))."</td>";
+                        echo "<td style='vertical-align:top'>".$info->titel.":</td><td>".replace_special($info->inhalt)."</td>";
                     }
                     else {
-                        echo "<td></td><td>".ball2img(nl2br($info->inhalt))."</td>";
+                        echo "<td></td><td>".replace_special($info->inhalt)."</td>";
                     }
                     echo "</tr>";
                 }
@@ -98,7 +122,7 @@ if ($this->tageler->datum >= date('Y-m-d'))
 else
 {
 ?>
-    <div class="componentheading">
+    <div class='componentheading' style='border-bottom:1px solid black'>
         Kein aktueller Tageler für <?php echo $this->tageler->name; ?> vorhanden
         <?php echo getEditButton($this->tageler); ?>
     </div>

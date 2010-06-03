@@ -102,12 +102,17 @@ class Tageler_DetailModelTageler_Detail extends JModel
         $schluss    = $db->quote($data['schluss']);
         $mitbringen = $db->quote($data['mitbringen']);
         $tenue      = $db->quote($data['tenue']);
+        $image      = $db->quote($data['image_path']);
         $einheit    = $db->quote($data['einheit']);
 
         $query = 'UPDATE #__tageler
                   SET datum = '.$datum.', titel = '.$titel.', beginn = '.$beginn.', schluss = '.$schluss.', '.
-                     'mitbringen = '.$mitbringen.', tenue = '.$tenue.
-                 ' WHERE einheit = '.$einheit;
+                     'mitbringen = '.$mitbringen.', tenue = '.$tenue; //.', image_path='.$image.
+                 //' WHERE einheit = '.$einheit;
+        if ($data['image_path'])
+            $query .= ', image_path='.$image;
+
+        $query .= ' WHERE einheit = '.$einheit;
 
         $db->setQuery($query);
         if (!$db->query())
