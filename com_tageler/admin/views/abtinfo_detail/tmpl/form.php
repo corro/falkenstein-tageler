@@ -15,7 +15,7 @@ function submitbutton(pressbutton)
 
 <style type="text/css">
 .input {
-    width: 260px;
+    width: 100%;
 }
 textarea.input {
     height: 100px;
@@ -27,6 +27,23 @@ textarea.input {
     <legend>Abteilungsinfo</legend>
     <table class='admintable'>
         <tr>
+            <td colspan='5'>
+                Alle mehrzeiligen Eingabefelder unterstützen die Formatierungssprache Textile. Verwende sie 
+                um den Tageler zu formatieren. Die wichtigsten Befehle sind:
+                <ul>
+                    <li>Aufzählungszeichen: * Aufzählung</li>
+                    <li>Fetter Text: *Dieser Text ist fett*</li>
+                    <li>Link: "Linktext":http://www.link.ch</li>
+                    <li>Mail-Link: "Pfadiname":mailto:pfadiname@pfadi-falkenstein.ch?subject=Betrefftext</li>
+                </ul>
+                Mehr Infos und eine komplette Liste der Befehler findest du unter
+                <a href='http://textile.thresholdstate.com'>http://textile.thresholdstate.com</a>
+                (einige Befehle sind deaktiviert).
+                <br />
+                <hr />
+            </td>
+        </tr>
+        <tr>
             <td class='key'>
                 <label for='titel'>Titel:</label>
             </td>
@@ -35,7 +52,7 @@ textarea.input {
             </td>
         </tr>
         <tr>
-            <td class='key'>
+            <td class='key' style='vertical-align:top'>
                 <label for='inhalt'>Inhalt:</label>
             </td>
             <td>
@@ -47,7 +64,7 @@ textarea.input {
                 <label for='idx'>Index:</label>
             </td>
             <td>
-                <input class='input' type='text' name='idx' id='idx' value='<?php echo $this->abtInfo->idx; ?>' />
+                <input class='input' style='width:40px' type='text' name='idx' id='idx' value='<?php echo $this->abtInfo->idx; ?>' />
             </td>
         </tr>
     </table>

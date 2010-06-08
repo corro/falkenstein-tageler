@@ -40,7 +40,7 @@ function removefield(id)
 
 <style type="text/css">
 .input {
-    width: 260px;
+    width: 100%;
 }
 textarea.input {
     height: 100px;
@@ -52,11 +52,28 @@ textarea.input {
         <legend>Tageler für <?php echo $this->tageler->name; ?></legend>
         <table class='admintable'>
             <tr>
+                <td colspan='5'>
+                    Alle mehrzeiligen Eingabefelder unterstützen die Formatierungssprache Textile. Verwende sie 
+                    um den Tageler zu formatieren. Die wichtigsten Befehle sind:
+                    <ul>
+                        <li>Aufzählungszeichen: * Aufzählung</li>
+                        <li>Fetter Text: *Dieser Text ist fett*</li>
+                        <li>Link: "Linktext":http://www.link.ch</li>
+                        <li>Mail-Link: "Pfadiname":mailto:pfadiname@pfadi-falkenstein.ch?subject=Betrefftext</li>
+                    </ul>
+                    Mehr Infos und eine komplette Liste der Befehler findest du unter
+                    <a href='http://textile.thresholdstate.com'>http://textile.thresholdstate.com</a>
+                    (einige Befehle sind deaktiviert).
+                    <br />
+                    <hr />
+                </td>
+            </tr>
+            <tr>
                 <td class='key'>
                     <label for='datum'>Datum:</label>
                 </td>
                 <td>
-                    <input style='vertical-align:top;width:240px;' class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' />
+                    <input style='vertical-align:top;width:94%' class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' />
                     <img class="calendar" src="templates/system/images/calendar.png" alt="calendar" name='datum_img' id="datum_img" />
                 </td>
             </tr>
@@ -123,13 +140,14 @@ textarea.input {
                         <textarea class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
                     </td>
                     <td style='vertical-align:top'>
-                        Index:
-                        <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
-                            id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
-                        <br />
-                        <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
-                            <img src='images/cancel_f2.png' style='height:20px' alt='Feld entfernen' />
-                        </button>
+                            Index:
+                            <br />
+                            <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
+                                id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
+                            <br />
+                            <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
+                                <img src='images/cancel_f2.png' style='height:20px' alt='Feld entfernen' />
+                            </button>
                     </td>
                 </tr>
             <?php

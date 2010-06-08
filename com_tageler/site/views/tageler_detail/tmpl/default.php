@@ -2,26 +2,14 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
+require_once(JPATH_COMPONENT.DS.'textile'.DS.'textile.php');
+
+$textile = new Textile();
+
 function date_mysql2german($date)
 {
     $d    =    explode('-',$date);
     return    sprintf('%02d.%02d.%04d', $d[2], $d[1], $d[0]);
-}
-
-function ball2img($str)
-{
-    return str_replace('*', "<img src='components/com_tageler/img/falkipfeilgruen.gif' />", $str);
-}
-
-function replace_special($text)
-{
-    $text = eregi_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_\+.~#?&//=]+)', '<a href="\\1">\\1</a>', $text);
-    $text = eregi_replace('([[:space:]()[{}])(www.[-a-zA-Z0-9@:%_\+.~#?&//=]+)', '\\1<a href="http://\\2">\\2</a>', $text);
-    $text = eregi_replace('([_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3})', '<a href="mailto:\\1">\\1</a>', $text);
-    $text = ball2img($text);
-    $text = nl2br($text);
-
-    return $text;
 }
 
 function getEditButton($tageler)
@@ -54,7 +42,6 @@ if ($this->tageler->datum >= date('Y-m-d'))
         .imagecontainer {
             width:170px;
             float:right;
-/*             background-color:red; */
             background-image: url(<?php echo $this->tageler->image_path; ?>);
             background-repeat: no-repeat;
             height:170px;
@@ -70,10 +57,8 @@ if ($this->tageler->datum >= date('Y-m-d'))
          <?php echo getEditButton($this->tageler); ?><br />
         <?php echo $this->tageler->titel; ?>
     </div>
-    <div class='imagecontainer'>
-        
-    </div>
-    <table class='contentpaneopen' style='width:370px'>
+    <div class='imagecontainer'></div>
+    <table class='contentpaneopen' style='width:400px'>
         <tr>
             <td class='label'>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
         </tr>
@@ -81,20 +66,20 @@ if ($this->tageler->datum >= date('Y-m-d'))
             <td class='label'>Schluss:</td><td><?php echo $this->tageler->schluss; ?></td>
         </tr>
         <tr>
-            <td class='label'>Mitbringen:</td><td><?php echo ball2img(nl2br($this->tageler->mitbringen)); ?></td>
+            <td class='label'>Mitbringen:</td><td><?php echo $textile->TextileRestricted($this->tageler->mitbringen); ?></td>
         </tr>
         <tr>
-            <td class='label'>Tenü:</td><td><?php echo ball2img(nl2br($this->tageler->tenue)); ?></td>
+            <td class='label'>Tenü:</td><td><?php echo $textile->TextileRestricted($this->tageler->tenue); ?></td>
         </tr>
         <?php
             foreach($this->felder as $feld)
             {
                 echo "<tr>";
                 if ($feld->titel) {
-                    echo "<td style='vertical-align:top'>".$feld->titel.":</td><td>".replace_special($feld->inhalt)."</td>";
+                    echo "<td style='vertical-align:top'>".$feld->titel.":</td><td>".$textile->TextileRestricted($feld->inhalt)."</td>";
                 }
                 else {
-                    echo "<td></td><td>".replace_special($feld->inhalt)."</td>";
+                    echo "<td></td><td>".$textile->TextileRestricted($feld->inhalt)."</td>";
                 }
                 echo "</tr>";
             }
@@ -107,10 +92,10 @@ if ($this->tageler->datum >= date('Y-m-d'))
                 {
                     echo "<tr style='background:#fff99d'>";
                     if ($info->titel) {
-                        echo "<td style='vertical-align:top'>".$info->titel.":</td><td>".replace_special($info->inhalt)."</td>";
+                        echo "<td style='vertical-align:top'>".$info->titel.":</td><td>".$textile->TextileRestricted($info->inhalt)."</td>";
                     }
                     else {
-                        echo "<td></td><td>".replace_special($info->inhalt)."</td>";
+                        echo "<td></td><td>".$textile->TextileRestricted($info->inhalt)."</td>";
                     }
                     echo "</tr>";
                 }

@@ -14,6 +14,7 @@
         <filename>controllers/tageler.php</filename>
         <filename>controllers/tageler_detail.php</filename>
         <filename>img/falkipfeilgruen.gif</filename>
+        <filename>textile/textile.php</filename>
         <filename>views/index.html</filename>
         <filename>views/tageler_detail/index.html</filename>
         <filename>views/tageler_detail/view.html.php</filename>
