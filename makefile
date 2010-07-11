@@ -3,10 +3,10 @@ all:
 	zip -r mod_tageler.zip mod_tageler/* -x mod_tageler/.hg
 
 install:
-	sudo -u www-data cp -r com_tageler/site/* /var/www/joomla/components/com_tageler/
-	sudo -u www-data cp -r com_tageler/admin/* /var/www/joomla/administrator/components/com_tageler/
-	sudo -u www-data cp -r mod_tageler/* /var/www/joomla/modules/mod_tageler/
+	sudo -u http cp -r com_tageler/site/* /srv/http/joomla/components/com_tageler/
+	sudo -u http cp -r com_tageler/admin/* /srv/http/joomla/administrator/components/com_tageler/
+	sudo -u http cp -r mod_tageler/* /srv/http/joomla/modules/mod_tageler/
 
 uninstall:
-	rm -R /var/www/joomla/components/com_tageler
-	rm -R /var/www/joomla/modules/mod_tageler
+	rm -R /srv/http/joomla/components/com_tageler
+	rm -R /srv/http/joomla/modules/mod_tageler

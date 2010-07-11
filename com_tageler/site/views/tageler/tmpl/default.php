@@ -52,7 +52,7 @@ function date_mysql2german($date)
         { ?>
             <tr>
                 <td class='adjacent'>
-                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $tageler->einheit; ?>'>
+                    <a href='index.php?option=com_tageler&controller=tageler_detail&cid[]=<?php echo $tageler->einheit; ?>'>
                         <?php echo $tageler->name; ?>
                     </a>
                 </td>
@@ -67,7 +67,7 @@ function date_mysql2german($date)
         { ?>
             <tr>
                 <td class='adjacent'>
-                    <a href='index.php?option=com_tageler&view=tageler&einheit=<?php echo $tageler->einheit; ?>'>
+                    <a href='index.php?option=com_tageler&controller=tageler_detail&cid[]=<?php echo $tageler->einheit; ?>'>
                         <?php echo $tageler->name; ?>
                     </a>
                 </td>
