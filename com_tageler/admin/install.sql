@@ -20,8 +20,7 @@ CREATE TABLE `#__tagelerfelder` (
   `titel` varchar(50) NULL,
   `inhalt` text NULL,
   `idx` int NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`einheit`) REFERENCES tageler(einheit) ON DELETE CASCADE
+  PRIMARY KEY (`id`)
 );
 
 INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 

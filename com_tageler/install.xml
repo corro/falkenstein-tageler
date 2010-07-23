@@ -13,6 +13,8 @@
         <filename>controllers/index.html</filename>
         <filename>controllers/tageler.php</filename>
         <filename>controllers/tageler_detail.php</filename>
+        <filename>css/tageler-style.css</filename>
+        <filename>css/tageler_detail-style.css</filename>
         <filename>img/falkipfeilgruen.gif</filename>
         <filename>textile/textile.php</filename>
         <filename>views/index.html</filename>
@@ -57,6 +59,7 @@
             <filename>models/index.html</filename>
             <filename>models/tageler.php</filename>
             <filename>models/tageler_detail.php</filename>
+            <filename>helpers/helpers.php</filename>
             <filename>views/index.html</filename>
             <filename>views/abtinfo/index.html</filename>
             <filename>views/abtinfo/view.html.php</filename>

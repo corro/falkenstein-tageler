@@ -31,9 +31,6 @@ var form = document.adminForm;
             <th width="20">
                 <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->abtInfos ); ?>);" />
             </th>
-            <!--<th width='20%'><?php echo JHTML::_( 'grid.sort', 'Titel', 'titel', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Inhalt', 'inhalt', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th width='15'><?php echo JHTML::_( 'grid.sort', 'Index', 'idx', $this->lists['order_Dir'], $this->lists['order']); ?></th>-->
             <th>Titel</th>
             <th>Inhalt</th>
             <th>Index</th>
@@ -66,8 +63,6 @@ var form = document.adminForm;
     </table>
 </div>
 
-<!--<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
-<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />-->
 <input type="hidden" name="option" value="com_tageler" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />

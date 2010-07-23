@@ -1,0 +1,16 @@
+td.label {
+    width:120px;
+    padding-bottom:10px;
+    vertical-align:top;
+}
+table {
+    border-style:none;
+    border-collapse:collapse;
+}
+.imagecontainer {
+    width:170px;
+    float:right;
+    background-image: url(<?php echo $this->tageler->image_path; ?>);
+    background-repeat: no-repeat;
+    height:170px;
+}
