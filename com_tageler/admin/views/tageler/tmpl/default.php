@@ -1,11 +1,8 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
-function date_mysql2german($date)
-{
-    $d    =    explode('-',$date);
-    return    sprintf('%02d.%02d.%04d', $d[2], $d[1], $d[0]);
-}
 JHTML::_('behavior.tooltip');
+require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
+
 ?>
 <script language="javascript" type="text/javascript">
 
@@ -34,13 +31,6 @@ var form = document.adminForm;
         <tr>
             <th width='15'>Einh.</th>
             <th width='10'></th>
-            <!--<th><?php echo JHTML::_( 'grid.sort', 'Name', 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Datum', 'datum', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Titel', 'titel', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Beginn', 'beginn', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Schluss', 'schluss', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Mitbringen', 'mitbringen', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-            <th><?php echo JHTML::_( 'grid.sort', 'Tenue', 'tenue', $this->lists['order_Dir'], $this->lists['order']); ?></th>-->
             <th>Name</th>
             <th>Datum</th>
             <th>Titel</th>
@@ -81,8 +71,6 @@ var form = document.adminForm;
     </table>
 </div>
 
-<!--<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
-<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />-->
 <input type="hidden" name="option" value="com_tageler" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />

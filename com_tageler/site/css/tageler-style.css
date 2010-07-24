@@ -1,0 +1,19 @@
+table.tageler {
+    font: 11px/24px Verdana, Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width:100%;
+}
+
+tr.header td {
+    background: #006f0d;
+    color:white;
+    border-top: 1px solid #CCC;
+    font-weight:bold;
+}
+
+td.adjacent {
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    padding: 0 0.5em;
+}

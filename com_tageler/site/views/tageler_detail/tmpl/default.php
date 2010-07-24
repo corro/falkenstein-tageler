@@ -3,58 +3,20 @@
 defined('_JEXEC') or die('Restricted access');
 
 require_once(JPATH_COMPONENT.DS.'textile'.DS.'textile.php');
+require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
 
 $textile = new Textile();
-
-function date_mysql2german($date)
-{
-    $d    =    explode('-',$date);
-    return    sprintf('%02d.%02d.%04d', $d[2], $d[1], $d[0]);
-}
-
-function getEditButton($tageler)
-{
-    $user =& JFactory::getUser();
-    if ($user->authorize('com_tageler', 'edit'))
-    {
-        return "<span class='hasTip' title='Tageler editieren'>
-                    <a href='index.php?option=com_tageler&controller=tageler_detail&task=edit&cid[]=".$tageler->einheit."'>
-                        <img src='images/M_images/edit.png' alt='edit' />
-                    </a>
-                </span>";
-    }
-    return '';
-}
 
 if ($this->tageler->datum >= date('Y-m-d'))
 {
 ?>
-    <style type='text/css'>
-        td.label {
-            width:120px;
-            padding-bottom:10px;
-            vertical-align:top;
-        }
-        table {
-            border-style:none;
-            border-collapse:collapse;
-        }
-        .imagecontainer {
-            width:170px;
-            float:right;
-            background-image: url(<?php echo $this->tageler->image_path; ?>);
-            background-repeat: no-repeat;
-            height:170px;
-        }
-    </style>
-
     <div class='componentheading' style='border-bottom:1px solid black'>
         <div style='float:right;margin-right:23px'>
             <div style='font-size:10px'>Aktivität vom:</div>
             <?php echo date_mysql2german($this->tageler->datum); ?>
         </div>
         Tageler für <?php echo $this->tageler->name; ?>
-         <?php echo getEditButton($this->tageler); ?><br />
+         <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?><br />
         <?php echo $this->tageler->titel; ?>
     </div>
     <div class='imagecontainer'></div>
@@ -109,7 +71,7 @@ else
 ?>
     <div class='componentheading' style='border-bottom:1px solid black'>
         Kein aktueller Tageler für <?php echo $this->tageler->name; ?> vorhanden
-        <?php echo getEditButton($this->tageler); ?>
+        <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?>
     </div>
 <?php
 }

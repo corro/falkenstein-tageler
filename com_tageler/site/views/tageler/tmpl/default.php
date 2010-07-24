@@ -2,34 +2,9 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
-function date_mysql2german($date)
-{
-    $d    =    explode("-",$date);
-    return    sprintf("%02d.%02d.%04d", $d[2], $d[1], $d[0]);
-}
+require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
+
 ?>
-
-<style type='text/css'>
-    table.tageler {
-        font: 11px/24px Verdana, Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width:100%;
-        }
-
-    tr.header td {
-        background: #006f0d;
-        color:white;
-        border-top: 1px solid #CCC;
-        font-weight:bold;
-        }
-
-    td.adjacent {
-        border-left: 1px solid #CCC;
-        border-right: 1px solid #CCC;
-        border-bottom: 1px solid #CCC;
-        padding: 0 0.5em;
-        }
-</style>
 
 <div class="componentheading">
     Tagelerübersicht

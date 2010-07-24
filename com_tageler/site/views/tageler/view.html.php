@@ -36,6 +36,7 @@ class TagelerViewTageler extends JView
         // Browsertitel anpassen
         $document = JFactory::getDocument();
         $document->setTitle('Tagelerübersicht');
+        $document->addStyleSheet('components/com_tageler/css/tageler-style.css');
 
         parent::display($tpl);
     }
