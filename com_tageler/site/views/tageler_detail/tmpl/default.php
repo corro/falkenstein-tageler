@@ -19,7 +19,7 @@ if ($this->tageler->datum >= date('Y-m-d'))
          <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?><br />
         <?php echo $this->tageler->titel; ?>
     </div>
-    <div class='imagecontainer'></div>
+    <div class='imagecontainer' style='background-image: url(<?php echo $this->tageler->image_path; ?>);'></div>
     <table class='contentpaneopen' style='width:400px'>
         <tr>
             <td class='label'>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
