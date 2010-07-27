@@ -41,9 +41,15 @@ class Tageler_DetailController extends JController
      */
     function edit()
     {
+        $user =& JFactory::getUser();
+        if (!$user->authorize('com_tageler', 'edit'))
+        {
+            echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
+            return;
+        }
+    
         JRequest::setVar( 'view', 'tageler_detail' );
         JRequest::setVar( 'layout', 'form' );
-        JRequest::setVar( 'hidemainmenu', 1 );
 
         parent::display();
     }
@@ -53,6 +59,13 @@ class Tageler_DetailController extends JController
      */
     function save()
     {
+        $user =& JFactory::getUser();
+        if (!$user->authorize('com_tageler', 'edit'))
+        {
+            echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
+            return;
+        }
+        
         // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
         JRequest::checkToken() or jexit('Invalid Token');
 
@@ -75,6 +88,13 @@ class Tageler_DetailController extends JController
      */
     function addField()
     {
+        $user =& JFactory::getUser();
+        if (!$user->authorize('com_tageler', 'edit'))
+        {
+            echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
+            return;
+        }
+        
         // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
         JRequest::checkToken() or jexit('Invalid Token');
 
@@ -96,6 +116,13 @@ class Tageler_DetailController extends JController
      */
     function remField()
     {
+        $user =& JFactory::getUser();
+        if (!$user->authorize('com_tageler', 'edit'))
+        {
+            echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
+            return;
+        }
+        
         // Sicherheitsüberprüfung zum Verhindern von Request-Fälschungen
         JRequest::checkToken() or jexit('Invalid Token');
 
