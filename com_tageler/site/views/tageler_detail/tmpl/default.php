@@ -2,6 +2,7 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
+JHTML::_('behavior.tooltip');
 require_once(JPATH_COMPONENT.DS.'textile'.DS.'textile.php');
 require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
 

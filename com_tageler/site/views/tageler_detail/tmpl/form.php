@@ -2,6 +2,7 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
+require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
 JHTML::_('behavior.calendar'); // Kalender-Script vorbereiten
 $document =& JFactory::getDocument();
 $document->addScriptDeclaration(
@@ -13,12 +14,6 @@ $document->addScriptDeclaration(
         singleClick    :    true
     });});"
 );
-
-function date_mysql2german($date)
-{
-    $d    =    explode("-",$date);
-    return    sprintf("%02d.%02d.%04d", $d[2], $d[1], $d[0]);
-}
 
 ?>
 
@@ -79,10 +74,11 @@ textarea.input {
             <td class='key'>
                 <label for='datum'>Datum:</label>
             </td>
-            <td>
+            <td style="width:450px">
                 <input type="text" name="datum" id="datum" value="<?php echo date_mysql2german($this->tageler->datum); ?>" style="width:100px" />
                 <img class='calendar' src='templates/system/images/calendar.png' alt='calendar' name='datum_img' id='datum_img' />
             </td>
+            <td  style="width:100px"></td>
         </tr>
         <tr>
             <td class='key'>
@@ -139,14 +135,16 @@ textarea.input {
                     <textarea class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
                 </td>
                 <td style='vertical-align:top'>
-                    Index:
-                    <br />
-                    <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
-                        id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
-                    <br />
-                    <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
-                        <img src='images/cancel_f2.png' style='height:20px' alt='Feld entfernen' />
-                    </button>
+                    <div style="margin-left:10px">
+                        Index:
+                        <br />
+                        <input class='input' style='width:40px' type='text' name='index_<?php echo $feld->id; ?>'
+                            id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
+                        <br />
+                        <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
+                            <img src='images/cancel_f2.png' style='height:20px' alt='Feld entfernen' />
+                        </button>
+                    </div>
                 </td>
             </tr>
         <?php
