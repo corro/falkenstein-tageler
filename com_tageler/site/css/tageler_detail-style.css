@@ -4,3 +4,8 @@
     background-repeat: no-repeat;
     height:170px;
 }
+
+.contentpaneopen  ul{
+    margin:0px;
+    padding:0px;
+}
