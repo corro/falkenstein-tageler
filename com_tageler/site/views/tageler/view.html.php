@@ -28,14 +28,8 @@ class TagelerViewTageler extends JView
         // Inhalt für das Template definieren
         $this->assignRef( 'allTageler', $allTageler );
 
-        // Breadcrumb anpassen
-        global $mainframe;
-        $breadcrumbs = &$mainframe->getPathWay();
-        $breadcrumbs->addItem( 'Tageler', JRoute::_('index.php?option=com_tageler&view=tagelerubersicht') );
-
-        // Browsertitel anpassen
+        // Stylesheet hinzufügen
         $document = JFactory::getDocument();
-        $document->setTitle('Tagelerübersicht');
         $document->addStyleSheet('components/com_tageler/css/tageler-style.css');
 
         parent::display($tpl);

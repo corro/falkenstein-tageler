@@ -36,14 +36,12 @@ class Tageler_DetailViewTageler_Detail extends JView
         $this->assignRef('abtInfos', $abtInfos);
 
         // Breadcrumb anpassen
-        global $mainframe;
-        $breadcrumbs = &$mainframe->getPathWay();
-        $breadcrumbs->addItem( 'Tageler', JRoute::_('index.php?option=com_tageler&view=tagelerubersicht') );
-        $breadcrumbs->addItem( $tageler->name, JRoute::_('index.php?option=com_tageler&view=tageler&einheit='.$tageler->einheit) );
+        $mainframe = &JFactory::getApplication();;
+        $breadcrumbs = &$mainframe->getPathway();
+        $breadcrumbs->addItem($tageler->name);
 
-        // Browsertitel anpassen
+        // Stylesheet hinzufügen
         $document = JFactory::getDocument();
-        $document->setTitle('Tageler für '.$tageler->name);
         $document->addStyleSheet('components/com_tageler/css/tageler_detail-style.css');
 
         parent::display($tpl);

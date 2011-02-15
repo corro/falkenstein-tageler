@@ -11,23 +11,20 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
-$controller = JRequest::getVar('controller','tageler');
+// Import Joomla Controller
+jimport('joomla.application.component.controller');
 
-require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
+$controller_name = JRequest::getVar('controller', 'tageler');
 
-// Editierfunktionen beschränken
-$auth =& JFactory::getACL();
-$auth->addACL('com_tageler', 'edit', 'users', 'super administrator');
-$auth->addACL('com_tageler', 'edit', 'users', 'administrator');
-$auth->addACL('com_tageler', 'edit', 'users', 'author');
+require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller_name.'.php');
+
+// TODO: Editierfunktionen implementieren
 
 // Controller instanzieren
-// $classname	= 'TagelerController'.$controller;
-$classname  = $controller.'controller';
-$controller = new $classname();
+$controller = JController::getInstance($controller_name);
 
 // Request bearbeiten
-$controller->execute(JRequest::getVar('task'));
+$controller->execute(JRequest::getCmd('task'));
 
 // Redirect wenn nötig
 $controller->redirect();

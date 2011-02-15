@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+    <name>Tageler</name>
+    <creationDate>Februar 2011</creationDate>
+    <author>R. Baumgartner</author>
+    <authorEmail>robin@baumgartners.ch</authorEmail>
+    <license>GNU/GPL</license>
+    <version>1.6</version>
+    <description>Tageler Component für das Anzeigen und Bearbeiten der Tageler</description>
+    <files folder="site">
+        <filename>tageler.php</filename>
+        <filename>router.php</filename>
+        <filename>index.html</filename>
+        <folder>controllers</folder>
+        <folder>css</folder>
+        <folder>img</folder>
+        <folder>textile</folder>
+        <folder>views</folder>
+    </files>
+    <install>
+        <sql>
+            <file charset="utf8" driver="mysql">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file charset="utf8" driver="mysql">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <administration>
+        <menu>Tageler</menu>
+        <submenu>
+            <menu img='none' controller='tageler'>Tageler</menu>
+            <menu img='none' controller='abtinfo'>Abteilungsinfos</menu>
+        </submenu>
+        <files folder="admin">
+            <filename>index.html</filename>
+            <filename>tageler.php</filename>
+            <folder>controllers</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>views</folder>
+        </files>		
+    </administration>
+</extension>

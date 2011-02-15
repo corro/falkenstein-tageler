@@ -23,11 +23,13 @@ require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
     ?>
         
     <?php
+        $link = JRoute::_('index.php?option=com_tageler&controller=tageler_detail&id='.strtolower($tageler->einheit));
         if ($tageler->datum >= date("Y-m-d"))
-        { ?>
+        {
+    ?>
             <tr>
                 <td class='adjacent'>
-                    <a href='index.php?option=com_tageler&controller=tageler_detail&cid[]=<?php echo $tageler->einheit; ?>'>
+                    <a href='<?php echo $link; ?>'>
                         <?php echo $tageler->name; ?>
                     </a>
                 </td>
@@ -42,7 +44,7 @@ require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
         { ?>
             <tr>
                 <td class='adjacent'>
-                    <a href='index.php?option=com_tageler&controller=tageler_detail&cid[]=<?php echo $tageler->einheit; ?>'>
+                    <a href='<?php echo $link; ?>'>
                         <?php echo $tageler->name; ?>
                     </a>
                 </td>

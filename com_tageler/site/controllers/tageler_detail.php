@@ -14,7 +14,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 // Import der Basisklasse
 jimport( 'joomla.application.component.controller' );
 
-
 /**
  * Tageler-Detail Controller
  *

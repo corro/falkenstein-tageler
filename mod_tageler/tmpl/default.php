@@ -13,7 +13,8 @@ foreach ($tageler as $t)
 		echo '<img src="modules/mod_tageler/img/old.png" width="9" height="9" alt="old" style="margin-right:10px" />';
 	}
 
-	echo '<a href="index.php?option=com_tageler&controller=tageler_detail&cid[]='.$t->einheit.'">'.$t->name.'</a><br />';
+  $link = JRoute::_('index.php?option=com_tageler&controller=tageler_detail&id='.strtolower($t->einheit));
+	echo '<a href="'.$link.'">'.$t->name.'</a><br />';
 }
 
 echo '<div style="margin-left:20px"><a href="index.php?option=com_tageler">Alle Tageler</a></div><br />';
