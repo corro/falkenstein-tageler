@@ -29,8 +29,16 @@ class TagelerViewTageler extends JView
         $this->assignRef( 'allTageler', $allTageler );
 
         // Stylesheet hinzufügen
-        $document = JFactory::getDocument();
-        $document->addStyleSheet('components/com_tageler/css/tageler-style.css');
+        $this->document->addStyleSheet('components/com_tageler/css/tageler-style.css');
+
+        // Titel setzen
+        $app = JFactory::getApplication();
+        $title = 'Tageler';
+        if ($app->getCfg('sitename_pagetitles', 0))
+        {
+            $title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
+        }
+        $this->document->setTitle($title);
 
         parent::display($tpl);
     }

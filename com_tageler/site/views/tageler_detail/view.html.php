@@ -41,8 +41,16 @@ class Tageler_DetailViewTageler_Detail extends JView
         $breadcrumbs->addItem($tageler->name);
 
         // Stylesheet hinzufügen
-        $document = JFactory::getDocument();
-        $document->addStyleSheet('components/com_tageler/css/tageler_detail-style.css');
+        $this->document->addStyleSheet('components/com_tageler/css/tageler_detail-style.css');
+
+        // Titel setzen
+        $app = JFactory::getApplication();
+        $title = 'Tageler '.$tageler->name;
+        if ($app->getCfg('sitename_pagetitles', 0))
+        {
+            $title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
+        }
+        $this->document->setTitle($title);
 
         parent::display($tpl);
     }
