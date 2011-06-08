@@ -41,7 +41,7 @@ class Tageler_DetailController extends JController
     function edit()
     {
         $user =& JFactory::getUser();
-        if (!$user->authorize('com_tageler', 'edit'))
+        if (!$user->authorise('core.manage', 'com_tageler'))
         {
             echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
             return;
@@ -59,7 +59,7 @@ class Tageler_DetailController extends JController
     function save()
     {
         $user =& JFactory::getUser();
-        if (!$user->authorize('com_tageler', 'edit'))
+        if (!$user->authorise('core.manage', 'com_tageler'))
         {
             echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
             return;
@@ -88,7 +88,7 @@ class Tageler_DetailController extends JController
     function addField()
     {
         $user =& JFactory::getUser();
-        if (!$user->authorize('com_tageler', 'edit'))
+        if (!$user->authorise('core.manage', 'com_tageler'))
         {
             echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
             return;
@@ -116,7 +116,7 @@ class Tageler_DetailController extends JController
     function remField()
     {
         $user =& JFactory::getUser();
-        if (!$user->authorize('com_tageler', 'edit'))
+        if (!$user->authorise('core.manage', 'com_tageler'))
         {
             echo '<h1>Zugriff verweigert</h1>Dieser Bereich ist den Leitern und Administratoren vorbehalten';
             return;

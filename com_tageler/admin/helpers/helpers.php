@@ -9,7 +9,7 @@ function date_mysql2german($date)
 function getEditButton($component, $title, $controller, $target)
 {
     $user =& JFactory::getUser();
-    if ($user->authorize($component, 'edit'))
+    if ($user->authorise('core.manage', $component))
     {
         return '<span class="hasTip" title="'.$title.'">
                     <a href="index.php?option='.$component.'&controller='.$controller.'&task=edit&cid[]='.$target.'">
