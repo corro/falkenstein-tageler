@@ -36,6 +36,8 @@
         <files folder="admin">
             <filename>index.html</filename>
             <filename>tageler.php</filename>
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
             <folder>controllers</folder>
             <folder>helpers</folder>
             <folder>models</folder>

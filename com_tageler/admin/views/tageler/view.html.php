@@ -26,6 +26,8 @@ class TagelerViewTageler extends JView
     {
         JToolBarHelper::title( JText::_( 'Tageler Manager' ), 'generic.png' );
         JToolBarHelper::editListX();
+        JToolBarHelper::divider();
+        JToolBarHelper::preferences('com_tageler');
 
         // Get data from the model
         $model   = $this->getModel();
