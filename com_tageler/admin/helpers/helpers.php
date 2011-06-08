@@ -13,7 +13,7 @@ function getEditButton($component, $title, $controller, $target)
     {
         return '<span class="hasTip" title="'.$title.'">
                     <a href="index.php?option='.$component.'&controller='.$controller.'&task=edit&cid[]='.$target.'">
-                        <img src="images/M_images/edit.png" alt="edit" />
+                        <img src="media/system/images/edit.png" alt="edit" />
                     </a>
                 </span>';
     }
