@@ -8,6 +8,9 @@
  * @license		GNU/GPL
  */
 
+// No direct access
+defined('_JEXEC') or die;
+
 // Import der Basisklasse
 jimport( 'joomla.application.component.view');
 
