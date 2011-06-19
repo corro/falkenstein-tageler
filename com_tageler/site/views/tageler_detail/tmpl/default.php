@@ -11,7 +11,7 @@ $textile = new Textile();
 if ($this->tageler->datum >= date('Y-m-d'))
 {
 ?>
-    <div class="componentheading" style="border-bottom:1px solid black">
+    <div class="componentheading" style="border-bottom:1px dotted black">
         <div style="float:right;margin-right:23px">
             <div style="font-size:10px">Aktivität vom:</div>
             <?php echo date_mysql2german($this->tageler->datum); ?>
