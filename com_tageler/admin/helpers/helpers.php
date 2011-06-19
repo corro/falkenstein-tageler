@@ -8,11 +8,12 @@ function date_mysql2german($date)
 
 function getEditButton($component, $title, $controller, $target)
 {
+    $link = JRoute::_('index.php?option='.$component.'&controller='.$controller.'&task=edit&id='.$target);
     $user =& JFactory::getUser();
     if ($user->authorise('core.manage', $component))
     {
         return '<span class="hasTip" title="'.$title.'">
-                    <a href="index.php?option='.$component.'&controller='.$controller.'&task=edit&cid[]='.$target.'">
+                    <a href="'.$link.'">
                         <img src="media/system/images/edit.png" alt="edit" />
                     </a>
                 </span>';
