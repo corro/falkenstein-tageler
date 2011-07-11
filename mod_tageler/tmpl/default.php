@@ -17,4 +17,5 @@ foreach ($tageler as $t)
 	echo '<a href="'.$link.'">'.$t->name.'</a><br />';
 }
 
-echo '<div style="margin-left:20px"><a href="index.php?option=com_tageler">Alle Tageler</a></div><br />';
+$link = JRoute::_('index.php?option=com_tageler');
+echo '<div style="margin-left:20px"><a href="'.$link.'">Alle Tageler</a></div><br />';
