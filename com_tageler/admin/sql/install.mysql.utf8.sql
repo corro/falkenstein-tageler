@@ -29,7 +29,7 @@ VALUES ('bib', 'Biber', '2010-05-17', 'Test',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
 INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 
-VALUES ('kat', 'Katiki (Bachbienli)', '2010-05-17', 'Test',
+VALUES ('kat', 'Katiki', '2010-05-17', 'Test',
         '14:00 Weiermattheim', '17:00 Weiermattheim',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
