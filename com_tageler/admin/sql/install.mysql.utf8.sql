@@ -29,7 +29,7 @@ VALUES ('bib', 'Biber', '2010-05-17', 'Test',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
 INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 
-VALUES ('bab', 'Bachbienli', '2010-05-17', 'Test',
+VALUES ('kat', 'Katiki (Bachbienli)', '2010-05-17', 'Test',
         '14:00 Weiermattheim', '17:00 Weiermattheim',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
@@ -44,22 +44,12 @@ VALUES ('pit', 'Pitry', '2010-05-17', 'Test',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
 INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 
-VALUES ('fla', 'Flammetrupp', '2010-05-17', 'Test',
+VALUES ('fla_st', 'Flamme-/Schlosstrupp', '2010-05-17', 'Test',
         '14:00 Weiermattheim', '17:00 Weiermattheim',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
 INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 
-VALUES ('st', 'Schlosstrupp', '2010-05-17', 'Test',
-        '14:00 Weiermattheim', '17:00 Weiermattheim',
-        'Nicht vergessen ...', 'Wetter angepasste Kleidung');
-
-INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 
-VALUES ('kom', 'Komodo', '2010-05-17', 'Test',
-        '14:00 Weiermattheim', '17:00 Weiermattheim',
-        'Nicht vergessen ...', 'Wetter angepasste Kleidung');
-
-INSERT INTO `#__tageler` (einheit, name, datum, titel, beginn, schluss, mitbringen, tenue) 
-VALUES ('loe', 'Löwenburg', '2010-05-17', 'Test',
+VALUES ('loe_kom', 'Löwenburg/Komodo', '2010-05-17', 'Test',
         '14:00 Weiermattheim', '17:00 Weiermattheim',
         'Nicht vergessen ...', 'Wetter angepasste Kleidung');
 
