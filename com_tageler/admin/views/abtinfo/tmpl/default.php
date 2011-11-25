@@ -4,11 +4,12 @@ JHTML::_('behavior.tooltip');
 ?>
 <script language="javascript" type="text/javascript">
 
-function submitform(pressbutton){
-var form = document.adminForm;
+Joomla.submitbutton = function submitbutton(pressbutton){
+  var form = document.adminForm;
    if (pressbutton)
-    {form.task.value=pressbutton;}
-    
+   {
+     form.task.value=pressbutton;
+   }
     if ((pressbutton=='edit')||(pressbutton=='add')||(pressbutton=='remove'))
      {
       form.controller.value="abtinfo_detail";
@@ -17,8 +18,7 @@ var form = document.adminForm;
         form.onsubmit();
         }
     catch(e){}
-    
-    form.submit();
+    submitform(pressbutton);
 }
 </script>
 

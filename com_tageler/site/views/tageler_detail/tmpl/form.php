@@ -76,7 +76,7 @@ textarea.input {
             </td>
             <td style="width:450px">
                 <input type="text" name="datum" id="datum" value="<?php echo date_mysql2german($this->tageler->datum); ?>" style="width:100px" />
-                <img class='calendar' src='/media/system/images/calendar.png' alt='calendar' name='datum_img' id='datum_img' />
+                <img class='calendar' src='<?php echo $this->baseurl; ?>/media/system/images/calendar.png' alt='calendar' name='datum_img' id='datum_img' />
             </td>
             <td  style="width:100px"></td>
         </tr>
@@ -142,7 +142,7 @@ textarea.input {
                             id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
                         <br />
                         <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
-                            <img src='/media/media/images/remove.png' style='height:20px' alt='Feld entfernen' />
+                        <img src='<?php echo $this->baseurl; ?>/media/media/images/remove.png' style='height:20px' alt='Feld entfernen' />
                         </button>
                     </div>
                 </td>
