@@ -10,7 +10,7 @@ function getEditButton($component, $title, $controller, $target)
 {
     $link = JRoute::_('index.php?option='.$component.'&controller='.$controller.'&task=edit&id='.$target);
     $user =& JFactory::getUser();
-    if ($user->authorise('core.manage', $component))
+    if ($user->authorise('core.edit', $component))
     {
         return '<span class="hasTip" title="'.$title.'">
                     <a href="'.$link.'">
