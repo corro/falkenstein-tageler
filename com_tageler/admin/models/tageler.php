@@ -37,7 +37,7 @@ class TagelerModelTageler extends JModel
         $app =& JFactory::getApplication();
         $db =& JFactory::getDBO();
 
-        $query = 'SELECT * FROM #__tageler';
+        $query = 'SELECT * FROM #__tageler ORDER BY reihenfolge';
         $db->setQuery( $query );
         $allTageler = $db->loadObjectList();
 

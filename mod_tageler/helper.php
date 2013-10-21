@@ -15,7 +15,7 @@ class ModTagelerHelper
     public function getTageler()
     {
         $db = &JFactory::getDBO();
-        $query = "SELECT * FROM #__tageler";
+        $query = "SELECT * FROM #__tageler ORDER BY reihenfolge";
         $db->setQuery($query);
         $tageler = $db->LoadObjectList();
 

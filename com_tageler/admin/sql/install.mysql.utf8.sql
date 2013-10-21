@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS `#__tagelerfelder`;
 
 CREATE TABLE `#__tageler` (
   `einheit` varchar(20) NOT NULL,
+  `reihenfolge` integer NULL,
   `name` varchar(20) NOT NULL,
   `datum` date NULL,
   `titel` varchar(50) NULL,
