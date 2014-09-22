@@ -30,21 +30,21 @@ if ($this->tageler->datum >= date('Y-m-d'))
         </tr>
         <tr>
             <td class="label" style="vertical-align:top">Mitbringen:</td>
-            <td><?php echo $textile->TextileRestricted($this->tageler->mitbringen, false); ?></td>
+            <td><?php echo JHtml::_('content.prepare', $textile->TextileRestricted($this->tageler->mitbringen, false)); ?></td>
         </tr>
         <tr>
             <td class="label" style="vertical-align:top">Tenü:</td>
-            <td><?php echo $textile->TextileRestricted($this->tageler->tenue, false); ?></td>
+            <td><?php echo JHtml::_('content.prepare', $textile->TextileRestricted($this->tageler->tenue, false)); ?></td>
         </tr>
         <?php
             foreach($this->felder as $feld)
             {
                 echo '<tr>';
                 if ($feld->titel) {
-                    echo '<td style="vertical-align:top">'.$feld->titel.':</td><td>'.$textile->TextileRestricted($feld->inhalt, false).'</td>';
+                    echo '<td style="vertical-align:top">'.$feld->titel.':</td><td>'.JHtml::_('content.prepare', $textile->TextileRestricted($feld->inhalt, false)).'</td>';
                 }
                 else {
-                    echo '<td></td><td>'.$textile->TextileRestricted($feld->inhalt, false).'</td>';
+                    echo '<td></td><td>'.JHtml::_('content.prepare', $textile->TextileRestricted($feld->inhalt, false)).'</td>';
                 }
                 echo '</tr>';
             }
@@ -58,10 +58,10 @@ if ($this->tageler->datum >= date('Y-m-d'))
                     echo '<tr style="background:#fff99d">';
                     if ($info->titel) {
                         echo '<td style="vertical-align:top">'.$info->titel.':</td>
-                              <td>'.$textile->TextileRestricted($info->inhalt, false).'</td>';
+                              <td>'.JHtml::_('content.prepare', $textile->TextileRestricted($info->inhalt, false)).'</td>';
                     }
                     else {
-                        echo '<td></td><td>'.$textile->TextileRestricted($info->inhalt, false).'</td>';
+                        echo '<td></td><td>'.JHtml::_('content.prepare', $textile->TextileRestricted($info->inhalt, false)).'</td>';
                     }
                     echo '</tr>';
                 }
