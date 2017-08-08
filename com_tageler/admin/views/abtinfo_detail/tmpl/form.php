@@ -36,7 +36,7 @@ textarea.input {
                     <li>Link: "Linktext":http://www.link.ch</li>
                     <li>Mail-Link: "Pfadiname":mailto:pfadiname@pfadi-falkenstein.ch?subject=Betrefftext</li>
                 </ul>
-                Mehr Infos und eine komplette Liste der Befehler findest du unter
+                Mehr Infos und eine komplette Liste der Befehle findest du unter
                 <a href='http://textile.thresholdstate.com'>http://textile.thresholdstate.com</a>
                 (einige Befehle sind deaktiviert).
                 <br />
