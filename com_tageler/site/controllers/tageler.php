@@ -29,7 +29,7 @@ class TagelerController extends JController
     {
         parent::__construct( $default );
 
-        $this->addModelPath( JPATH_COMPONENT_ADMINISTRATOR .DS.'models' );
+        $this->addModelPath( JPATH_COMPONENT_ADMINISTRATOR .'/models' );
     }
 
     /**

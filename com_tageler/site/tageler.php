@@ -16,7 +16,7 @@ jimport('joomla.application.component.controller');
 
 $controller_name = JRequest::getVar('controller', 'tageler');
 
-require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller_name.'.php');
+require_once (JPATH_COMPONENT.'/controllers/'.$controller_name.'.php');
 
 // TODO: Editierfunktionen implementieren
 

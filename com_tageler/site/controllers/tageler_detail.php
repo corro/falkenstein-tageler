@@ -29,7 +29,7 @@ class Tageler_DetailController extends JController
     {
         parent::__construct( $default );
 
-        $this->addModelPath( JPATH_COMPONENT_ADMINISTRATOR .DS.'models' );
+        $this->addModelPath( JPATH_COMPONENT_ADMINISTRATOR .'/models' );
 
         // Register Extra tasks
         $this->registerTask( 'add', 'edit' );

@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 JHTML::_('behavior.tooltip');
-require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
+require_once(JPATH_COMPONENT_ADMINISTRATOR.'/helpers/helpers.php');
 
 ?>
 <script language="javascript" type="text/javascript">

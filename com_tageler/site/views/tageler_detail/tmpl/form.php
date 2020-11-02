@@ -2,7 +2,7 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
-require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'helpers.php');
+require_once(JPATH_COMPONENT_ADMINISTRATOR.'/helpers/helpers.php');
 JHTML::_('behavior.calendar'); // Kalender-Script vorbereiten
 $document =& JFactory::getDocument();
 $document->addScriptDeclaration(
