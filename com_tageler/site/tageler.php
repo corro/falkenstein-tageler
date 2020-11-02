@@ -21,7 +21,7 @@ require_once (JPATH_COMPONENT.'/controllers/'.$controller_name.'.php');
 // TODO: Editierfunktionen implementieren
 
 // Controller instanzieren
-$controller = JController::getInstance($controller_name);
+$controller = JControllerLegacy::getInstance($controller_name);
 
 // Request bearbeiten
 $controller->execute(JRequest::getCmd('task'));

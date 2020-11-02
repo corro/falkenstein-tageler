@@ -20,7 +20,7 @@ jimport( 'joomla.application.component.view' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class AbtInfo_DetailViewAbtInfo_Detail extends JView
+class AbtInfo_DetailViewAbtInfo_Detail extends JViewLegacy
 {
     function display($tpl = null)
     {

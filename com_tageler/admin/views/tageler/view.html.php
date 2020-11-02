@@ -20,12 +20,12 @@ jimport( 'joomla.application.component.view' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerViewTageler extends JView
+class TagelerViewTageler extends JViewLegacy
 {
     function display($tpl = null)
     {
         JToolBarHelper::title( JText::_( 'Tageler Manager' ), 'generic.png' );
-        JToolBarHelper::editListX();
+        JToolBarHelper::editList();
         JToolBarHelper::divider();
         JToolBarHelper::preferences('com_tageler');
 

@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class AbtInfo_DetailModelAbtInfo_Detail extends JModel
+class AbtInfo_DetailModelAbtInfo_Detail extends JModelLegacy
 {
     /**
      * Liefert die Abteilungsinfos (einheit=all)

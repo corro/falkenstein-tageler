@@ -14,7 +14,7 @@
         <folder>controllers</folder>
         <folder>css</folder>
         <folder>img</folder>
-        <folder>textile</folder>
+        <folder>vendor</folder>
         <folder>views</folder>
     </files>
     <install>

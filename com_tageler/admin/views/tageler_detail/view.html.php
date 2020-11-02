@@ -20,7 +20,7 @@ jimport( 'joomla.application.component.view' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class Tageler_DetailViewTageler_Detail extends JView
+class Tageler_DetailViewTageler_Detail extends JViewLegacy
 {
     function display($tpl = null)
     {

@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.controller' );
  * @package     Falkenstein.Joomla
  * @subpackage  Components
  */
-class Tageler_DetailController extends JController
+class Tageler_DetailController extends JControllerLegacy
 {
     /**
      * Custom Constructor

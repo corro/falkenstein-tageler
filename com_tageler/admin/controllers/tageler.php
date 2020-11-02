@@ -20,7 +20,7 @@ jimport('joomla.application.component.controller');
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerController extends JController
+class TagelerController extends JControllerLegacy
 {
     /**
      * Custom Constructor
@@ -28,13 +28,5 @@ class TagelerController extends JController
     function __construct( $default = array())
     {
         parent::__construct( $default );
-    }
-
-    /**
-     * Standardansicht
-     */
-    function display()
-    {
-        parent::display();
     }
 }

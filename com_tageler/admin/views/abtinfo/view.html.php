@@ -20,14 +20,14 @@ jimport( 'joomla.application.component.view' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class AbtInfoViewAbtInfo extends JView
+class AbtInfoViewAbtInfo extends JViewLegacy
 {
     function display($tpl = null)
     {
         JToolBarHelper::title( JText::_( 'Abteilungsinfos Manager' ), 'generic.png' );
         JToolBarHelper::deleteList();
-        JToolBarHelper::editListX();
-        JToolBarHelper::addNewX();
+        JToolBarHelper::editList();
+        JToolBarHelper::addNew();
 
         // Get data from the model
         $model =& $this->getModel();

@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class AbtInfoModelAbtInfo extends JModel
+class AbtInfoModelAbtInfo extends JModelLegacy
 {
     function __construct()
     {

@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class Tageler_DetailModelTageler_Detail extends JModel
+class Tageler_DetailModelTageler_Detail extends JModelLegacy
 {
     /**
      * Liefert den aktuellen Tageler für die Einheit

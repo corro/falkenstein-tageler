@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.controller' );
  * @package     Falkenstein.Joomla
  * @subpackage  Components
  */
-class AbtInfo_DetailController extends JController
+class AbtInfo_DetailController extends JControllerLegacy
 {
     /**
      * Custom Constructor

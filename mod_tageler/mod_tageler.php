@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
  
 // include the helper file
-require_once(dirname(__FILE__).DS.'helper.php');
+require_once(dirname(__FILE__).'/helper.php');
  
 // get a parameter from the module's configuration
 // $userCount = $params->get('usercount');

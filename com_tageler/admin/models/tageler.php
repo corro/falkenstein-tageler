@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class TagelerModelTageler extends JModel
+class TagelerModelTageler extends JModelLegacy
 {
     function __construct()
     {

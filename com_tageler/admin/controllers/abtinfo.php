@@ -20,21 +20,6 @@ jimport('joomla.application.component.controller');
  * @package    Falkenstein.Joomla
  * @subpackage Components
  */
-class AbtInfoController extends JController
+class AbtInfoController extends JControllerLegacy
 {
-    /**
-     * Custom Constructor
-     */
-    function __construct( $default = array())
-    {
-        parent::__construct( $default );
-    }
-
-    /**
-     * Standardansicht
-     */
-    function display()
-    {
-        parent::display();
-    }
 }
