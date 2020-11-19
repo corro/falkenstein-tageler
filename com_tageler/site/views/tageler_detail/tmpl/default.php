@@ -23,17 +23,17 @@ if ($this->tageler->datum >= date('Y-m-d'))
     <div class="imagecontainer" style="background-image: url(<?php echo $this->tageler->image_path; ?>);"></div>
     <table class="contentpaneopen" style="width:400px">
         <tr>
-            <td class="label">Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
+            <td>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
         </tr>
         <tr>
-            <td class="label">Schluss:</td><td><?php echo $this->tageler->schluss; ?></td>
+            <td>Schluss:</td><td><?php echo $this->tageler->schluss; ?></td>
         </tr>
         <tr>
-            <td class="label" style="vertical-align:top">Mitbringen:</td>
+            <td>Mitbringen:</td>
             <td><?php echo JHtml::_('content.prepare', $parser->parse($this->tageler->mitbringen, false)); ?></td>
         </tr>
         <tr>
-            <td class="label" style="vertical-align:top">Tenü:</td>
+            <td>Tenü:</td>
             <td><?php echo JHtml::_('content.prepare', $parser->parse($this->tageler->tenue, false)); ?></td>
         </tr>
         <?php
