@@ -134,7 +134,7 @@ textarea.input {
                         </label>
                     </td>
                     <td>
-                        <textarea class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
+                        <textarea style="width:95%" class='input' name='inhalt_<?php echo $feld->id; ?>' id='inhalt_<?php echo $feld->id; ?>'><?php echo $feld->inhalt; ?></textarea>
                     </td>
                     <td style='vertical-align:top'>
                             Index:
@@ -143,7 +143,7 @@ textarea.input {
                                 id='index_<?php echo $feld->id; ?>' value='<?php echo $feld->idx; ?>' />
                             <br />
                             <button onclick='removefield(<?php echo $feld->id; ?>)' title='Feld entfernen'>
-                                <img src='images/cancel_f2.png' style='height:20px' alt='Feld entfernen' />
+                                <img src='../media/media/images/remove.png' style='height:20px' alt='Feld entfernen' />
                             </button>
                     </td>
                 </tr>
