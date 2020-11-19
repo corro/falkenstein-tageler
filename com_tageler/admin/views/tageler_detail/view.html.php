@@ -24,10 +24,11 @@ class Tageler_DetailViewTageler_Detail extends JViewLegacy
 {
     function display($tpl = null)
     {
-        JToolBarHelper::title( 'Tageler: <small><small>[ Editieren ]</small></small>' );
-        JToolBarHelper::custom( 'addField', 'new', '', 'Feld hinzufügen', false, false );
+        JToolBarHelper::title('Tageler: Editieren');
+        JToolBarHelper::apply();
         JToolBarHelper::save();
-        JToolBarHelper::cancel( 'cancel', 'Close' );
+        JToolBarHelper::custom('addField', 'save-new', '', 'Feld hinzufügen', false, false);
+        JToolBarHelper::cancel();
 
         $array = JRequest::getVar('cid',  0, '', 'array');
         $einheit = $array[0];
