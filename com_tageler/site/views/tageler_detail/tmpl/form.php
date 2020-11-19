@@ -129,7 +129,7 @@ textarea.input {
             <tr>
                 <td class='key' style='vertical-align:top'>
                     <label for='titel_<?php echo $feld->id; ?>'>
-                        <input class='input' style='width:120px' type='text' name='titel_<?php echo $feld->id; ?>'
+                        <input class='input' style='display:inline;width:120px' type='text' name='titel_<?php echo $feld->id; ?>'
                             id='titel_<?php echo $feld->id; ?>' value='<?php echo $feld->titel; ?>' />:
                     </label>
                 </td>
