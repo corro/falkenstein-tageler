@@ -2,10 +2,11 @@
 // Sicherheitscheck
 defined('_JEXEC') or die('Restricted access');
 
+JHtml::_('jquery.framework', false);
 JHTML::_('behavior.calendar'); // Kalender-Script vorbereiten
 $document =& JFactory::getDocument();
 $document->addScriptDeclaration(
-    "window.addEvent('domready', function() {Calendar.setup({
+    "$(document).ready(function() {Calendar.setup({
         inputField     :    'datum',     // id of the input field
         ifFormat       :    '%d.%m.%Y',      // format of the input field
         button         :    'datum_img',  // trigger for the calendar (button ID)
@@ -69,7 +70,7 @@ textarea.input {
                     <label for='datum'>Datum:</label>
                 </td>
                 <td>
-                    <input style='vertical-align:top;width:94%' class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' />
+                    <input style='vertical-align:top;width:90%' class='input' type='text' name='datum' id='datum' value='<?php echo date_mysql2german($this->tageler->datum); ?>' />
                     <img class="calendar" src="templates/system/images/calendar.png" alt="calendar" name='datum_img' id="datum_img" />
                 </td>
             </tr>

@@ -25,7 +25,6 @@ class Tageler_DetailViewTageler_Detail extends JViewLegacy
     function display($tpl = null)
     {
         JToolBarHelper::title('Tageler: Editieren');
-        JToolBarHelper::apply();
         JToolBarHelper::save();
         JToolBarHelper::custom('addField', 'save-new', '', 'Feld hinzufügen', false, false);
         JToolBarHelper::cancel();
