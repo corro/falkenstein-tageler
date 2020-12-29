@@ -7,21 +7,23 @@ require_once(JPATH_COMPONENT.'/vendor/autoload.php');
 require_once(JPATH_COMPONENT_ADMINISTRATOR.'/helpers/helpers.php');
 
 $parser = new \Netcarver\Textile\Parser();
+?>
 
+<h2 class="article-title">
+    Tageler <?php echo $this->tageler->name; ?>
+    <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?>
+</h2>
+
+<?php
 if ($this->tageler->datum >= date('Y-m-d'))
 {
 ?>
-    <div class="componentheading" style="border-bottom:1px dotted black">
-        <div style="float:right;margin-right:23px">
-            <div style="font-size:10px">Aktivität vom:</div>
-            <?php echo date_mysql2german($this->tageler->datum); ?>
-        </div>
-        Tageler für <?php echo $this->tageler->name; ?>
-         <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?><br />
-        <?php echo $this->tageler->titel; ?>
-    </div>
+    <h3><?php echo $this->tageler->titel; ?></h3>
     <div class="imagecontainer" style="background-image: url(<?php echo $this->tageler->image_path; ?>);"></div>
     <table class="contentpaneopen" style="width:400px">
+        <tr>
+            <td>Datum:</td><td><?php echo date_mysql2german($this->tageler->datum); ?></td>
+        </td>
         <tr>
             <td>Beginn:</td><td><?php echo $this->tageler->beginn; ?></td>
         </tr>
@@ -73,7 +75,7 @@ if ($this->tageler->datum >= date('Y-m-d'))
 else
 {
 ?>
-    <div class="componentheading" style="border-bottom:1px solid black">
+    <div>
         Kein aktueller Tageler für <?php echo $this->tageler->name; ?> vorhanden
         <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?>
     </div>

@@ -6,9 +6,9 @@ require_once(JPATH_COMPONENT_ADMINISTRATOR.'/helpers/helpers.php');
 
 ?>
 
-<div class="componentheading">
+<h2 class="article-title">
     Tagelerübersicht
-</div>
+</h2>
 <table class='tageler'>
     <tr class="header">
         <td class='adjacent'>Einheit</td>
