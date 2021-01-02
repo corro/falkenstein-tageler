@@ -77,7 +77,6 @@ else
 ?>
     <div>
         Kein aktueller Tageler für <?php echo $this->tageler->name; ?> vorhanden
-        <?php echo getEditButton('com_tageler', 'Tageler editieren', 'tageler_detail', $this->tageler->einheit); ?>
     </div>
 <?php
 }
