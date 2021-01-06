@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="1.6.0" method="upgrade">
+	<name>Tageler</name>
+	<creationDate>Januar 2021</creationDate>
+    <author>R. Baumgartner</author>
+    <authorEmail>robin@baumgartners.ch</authorEmail>
+    <license>GNU/GPL</license>
+    <version>1.6</version>
+    <description>Tageler Component und Module für das Anzeigen und Bearbeiten der Tageler</description>
+	<packagename>tageler</packagename>
+	<files>
+		<file type="component" id="com_tageler">com_tageler.zip</file>
+		<file type="module" id="mod_tageler" client="site">mod_tageler.zip</file>
+	</files>
+</extension>
