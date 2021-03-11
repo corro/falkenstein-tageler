@@ -22,30 +22,30 @@ Joomla.submitbutton = function submitbutton(pressbutton){
 }
 </script>
 
-<form action="index.php?option=com_tageler" method="post" name="adminForm">
+<form action="index.php?option=com_tageler" method="post" id="adminForm" name="adminForm">
 <div id="editcell">
-    <table class="adminlist">
+    <table class="table table-striped table-hover">
     <thead>
         <tr>
             <th width='10'>#</th>
             <th width="20">
-                <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->abtInfos ); ?>);" />
+                <?php echo JHtml::_('grid.checkall'); ?>
             </th>
             <th>Titel</th>
             <th>Inhalt</th>
             <th>Index</th>
         </tr>
     </thead>
+    <tbody>
     <?php
     $i = 0;
     $k = 0;
     foreach($this->abtInfos as $a)
     {
-        $checked = JHTML::_( 'grid.id', $i, $a->id );
     ?>
         <tr class='<?php echo 'row'.$k; ?>'>
             <td><?php echo $a->id; ?></td>
-            <td><?php echo $checked; ?></td>
+            <td><?php echo JHtml::_('grid.id', $i, $a->id); ?></td>
             <td>
                 <span class='editlinktip hasTip' title='Edit::<?php echo $a->titel; ?>'>
                     <a href='index.php?option=com_tageler&controller=abtinfo_detail&task=edit&cid[]=<?php echo $a->id; ?>'>
@@ -60,6 +60,7 @@ Joomla.submitbutton = function submitbutton(pressbutton){
         $i += 1;
         $k = 1 - $k;
     } ?>
+    </tbody>
     </table>
 </div>
 
