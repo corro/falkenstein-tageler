@@ -5,7 +5,10 @@
     height:170px;
 }
 
-.contentpaneopen  ul{
-    margin:0px;
-    padding:0px;
+.contentpaneopen ul{
+    padding-left:15px;
+}
+
+.contentpaneopen td{
+    padding-right: 10px;
 }
