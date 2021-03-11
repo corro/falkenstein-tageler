@@ -6,8 +6,8 @@ require_once(JPATH_COMPONENT_ADMINISTRATOR.'/helpers/helpers.php');
 ?>
 <script language="javascript" type="text/javascript">
 
-function submitform(pressbutton){
-var form = document.adminForm;
+Joomla.submitbutton = function submitbutton(pressbutton){
+  var form = document.adminForm;
    if (pressbutton)
     {form.task.value=pressbutton;}
     
@@ -20,13 +20,13 @@ var form = document.adminForm;
         }
     catch(e){}
     
-    form.submit();
+    submitform(pressbutton);
 }
 </script>
 
-<form action="index.php?option=com_tageler" method="post" name="adminForm">
+<form action="index.php?option=com_tageler" method="post" id="adminForm" name="adminForm">
 <div id="editcell">
-    <table class="adminlist">
+    <table class="table table-striped table-hover">
     <thead>
         <tr>
             <th width='15'>Einh.</th>
@@ -45,11 +45,10 @@ var form = document.adminForm;
     $k = 0;
     foreach($this->tageler as $t)
     {
-        $checked    = JHTML::_( 'grid.id', $i, $t->einheit );
     ?>
         <tr class='<?php echo 'row'.$k; ?>'>
             <td><?php echo $t->einheit; ?></td>
-            <td><input type="radio" id="cb<?php echo $i;?>" name="cid[]" value="<?php echo $t->einheit; ?>" onclick="isChecked(this.checked);" /></td>
+            <td><?php echo JHtml::_('grid.id', $i, $t->id); ?></td>
             <td>
                 <span class='editlinktip hasTip' title='<?php echo JText::_( 'Edit' );?>::<?php echo $t->name; ?>'>
                     <a href='index.php?option=com_tageler&controller=tageler_detail&task=edit&cid[]=<?php echo $t->einheit; ?>'>
