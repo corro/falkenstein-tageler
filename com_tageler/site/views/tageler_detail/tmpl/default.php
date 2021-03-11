@@ -19,7 +19,9 @@ if ($this->tageler->datum >= date('Y-m-d'))
 {
 ?>
     <h3><?php echo $this->tageler->titel; ?></h3>
+    <?php if ($this->tageler->image_path): ?>
     <div class="imagecontainer" style="background-image: url(<?php echo $this->tageler->image_path; ?>);"></div>
+    <?php endif; ?>
     <table class="contentpaneopen" style="width:400px">
         <tr>
             <td>Datum:</td><td><?php echo date_mysql2german($this->tageler->datum); ?></td>
