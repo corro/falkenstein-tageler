@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
  
 class ModTagelerHelper
 {
-    public function getTageler()
+    public static function getTageler()
     {
         $db = &JFactory::getDBO();
         $query = "SELECT * FROM #__tageler ORDER BY reihenfolge";
